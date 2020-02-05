@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>test3</title>
+    <url>/2020/02/05/test3/</url>
+    <content><![CDATA[<h2 id="NOTHING"><a href="#NOTHING" class="headerlink" title="NOTHING"></a>NOTHING</h2>]]></content>
+      <categories>
+        <category>TEST1</category>
+      </categories>
+      <tags>
+        <tag>测试1</tag>
+        <tag>测试2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test2</title>
     <url>/2020/02/05/test2/</url>
     <content><![CDATA[<h2 id="nothing"><a href="#nothing" class="headerlink" title="nothing"></a>nothing</h2>]]></content>
