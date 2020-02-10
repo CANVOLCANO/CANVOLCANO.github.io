@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HL1</title>
+    <url>/2020/02/10/HL1/</url>
+    <content><![CDATA[<h2 id="针对跨模态检索、基于哈希的字典学习"><a href="#针对跨模态检索、基于哈希的字典学习" class="headerlink" title="针对跨模态检索、基于哈希的字典学习"></a>针对跨模态检索、基于哈希的字典学习</h2><p><b>Xu, Xin-Shun. “Dictionary learning based hashing for cross-modal retrieval.” <em>Proceedings of the 24th ACM international conference on Multimedia</em>. ACM, 2016. </b></p>
+<h3 id="Integrated-Hash"><a href="#Integrated-Hash" class="headerlink" title="Integrated Hash"></a>Integrated Hash</h3><ol>
+<li>之前：把不同模态的数据直接投影到同一个空间，但是由于某些语义上相近的数据在隐空间(latent space)投影后难以靠近造成误差。</li>
+<li>改进：并不是直接对不同模态的数据进行投影，而是首先先为每个模态学习出字典并构造出数据的稀疏表示，再对稀疏表示进行线性投影。</li>
+</ol>
+<h3 id="检索过程"><a href="#检索过程" class="headerlink" title="检索过程"></a>检索过程</h3><p>假设根据模态1检索模态2，输入模态1的一个样本$x$,再根据已经学习的模态1的字典$B^1$构造$x$的稀疏表示$s$，再用已经学习的模态1的投影矩阵$R^1$对$s$进行投影得到$x$的哈希码$y$。<br>$$<br>{\underset{s} {arg,min} ||x-B^1s||^2_2+\rho|s|} \tag{1}<br>$$</p>
+<p>$$<br>y=sgn(R^1s) \tag{2}<br>$$</p>
+<h3 id="学习过程"><a href="#学习过程" class="headerlink" title="学习过程"></a>学习过程</h3><h4 id="符号系统"><a href="#符号系统" class="headerlink" title="符号系统"></a>符号系统</h4><table>
+<thead>
+<tr>
+<th>notation</th>
+<th>def</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$O={o_i}^n_{i=1}$</td>
+<td>多模态训练数据集</td>
+</tr>
+<tr>
+<td>$X^1\in R^{d1<em>n} X^2\in R^{d2</em>n}$</td>
+<td>两个不同模态的数据矩阵</td>
+</tr>
+<tr>
+<td>$S\in {1,0}^{n*n}$</td>
+<td>模态间相似度矩阵</td>
+</tr>
+<tr>
+<td>$r$</td>
+<td>哈希码长度</td>
+</tr>
+<tr>
+<td>$Y\in {+1,-1}^{r*n}$</td>
+<td>两个模态的哈希矩阵</td>
+</tr>
+<tr>
+<td>$B^1 B^2$</td>
+<td>两个不同模态的字典</td>
+</tr>
+<tr>
+<td>$S^1 S^2 $</td>
+<td>两个不同模态的稀疏表示</td>
+</tr>
+<tr>
+<td>$\tilde{R^1} \tilde{R^2}$</td>
+<td>直接对原始模态数据投影使用的投影矩阵</td>
+</tr>
+<tr>
+<td>$R^1 R^2$</td>
+<td>对原始数据的稀疏表示投影使用的稀疏矩阵</td>
+</tr>
+<tr>
+<td>$ \Theta \in R^{k*k} $</td>
+<td>对角元素$\Theta_{ii}\ge 0$且为拉格朗日系数</td>
+</tr>
+</tbody></table>
+<h4 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h4><p>两个数据的哈希码的内积及两个哈希码的海明距离:<br>$$<br>code_r (x_i)\circ code_r(x_j)=r-2D_h(x_i,x_j)                                      \tag{3}<br>$$<br>优化目标方程1，哈希矩阵要尽可能保持数据间的相似度：<br>$$<br>\widetilde{O}<em>{sp}=\underset{Y} {min}\ ||Y^TY-r*S||^2_2 \tag{4}<br>$$<br>优化目标方程2，将两个不同模态的数据投影到海明空间后，要尽可能接近哈希矩阵$Y$：<br>$$<br>\widetilde{O}</em>{pe}=\underset{ \widetilde{R_1},\widetilde{R_2} } {min}\ ||Y-sgn(\widetilde{R^1}X^1)||^2_2+||Y-sgn(\widetilde{R^2}X^2)||^2_2\tag{5}<br>$$<br>考虑到对$sgn(\cdot)$难以直接处理，但把$sgn(x)$直接换成$x$又会导致较大的误差。<b>这篇文章提出了，不直接对原始的数据进行投影，而是先学习原始数据的字典和稀疏表示，再对稀疏表示进行投影，同时可以去掉难以直接处理的sgn()</b>。</p>
+<p>优化目标方程2的改进：<br>$$<br>\widetilde{O}<em>{pe}=\underset{ B^1,B^2,S^1,S^2,R^1,R^2 } {min}\ ||X^1-B^1S^1||^2_2+\beta||X^2-B^2S^2||^2_2+\rho(\sum^n</em>{i=1}|S^1_i|+\sum^n_{i=1}|S^2_i|)+<br>\\lambda(||Y-R^1S^1||^2_2+||Y-R^2S^2||^2_2) \tag{6}<br>$$</p>
+<p>考虑到哈希矩阵$Y$并不连续可导，把$Y$替换成实值矩阵$H$。最后综合考虑两个优化方程：<br>$$<br>\underset{ B^1,B^2,S^1,S^2,R^1,R^2,Y } {min}\ ||X^1-B^1S^1||^2_2+\beta||X^2-B^2S^2||^2_2+\rho(\sum^n_{i=1}|S^1_i|+\sum^n_{i=1}|S^2_i|)+<br>\\lambda(||H-R^1S^1||^2_2+||H-R^2S^2||^2_2)+\mu||\phi(H)^T\phi(H)-rS||^2_2<br>\ s.t. ||B^1_{\cdot i}||<em>2\leq 1,||B^2</em>{\cdot i}||<em>2\leq 1,||R^1</em>{\cdot i}||<em>2\leq 1,||R^2</em>{\cdot i}||_2\leq 1<br>\tag{7}<br>$$<br>其中，限制是为了防止平凡的解。</p>
+<h4 id="优化过程"><a href="#优化过程" class="headerlink" title="优化过程"></a>优化过程</h4><p>考虑固定其他的变量，每次优化一个变量，进行迭代优化.</p>
+<ol>
+<li>优化$S^1$:<br>$$<br>\underset{S^1} {min} \ ||X^1-B^1S^1||^2_2+\rho\sum^n_{i=1}|S^1_i|+\lambda||H-R^1S^1||^2_2 \ \Rightarrow \underset{S^1} {min} \<br>||\left[<br> \begin{matrix}<br>X^1\<br>\sqrt{\lambda}H<br>  \end{matrix}<br>\right]-<br>\left[<br> \begin{matrix}<br>B^1\<br>\sqrt{\lambda}R^1<br>  \end{matrix}<br>\right]S^1||^2_2<br>+\rho \sum^n_{i=1}|S^1_i| \tag{8}<br>$$</li>
+</ol>
+<ol start="2">
+<li><p>优化$H$（每次优化$H$的一行$H_i$）：<br>$$<br>\underset{H_i} {min}\ \lambda(||H_i-(R^1S^1)<em>i||^2_2+||H_i-(R^2S^2)_i||^2_2)+\<br>\mu||\phi(H_i)^T\phi(H_i)-R</em>{i-1}||^2_2 \tag{9}<br>$$<br>其中<br>$$<br>R_{i-1}=rS-\sum^{i-1}<em>{t=1}\phi(H_t)^T\phi(H_t) \tag{10}<br>$$<br>式$(7)$对 $H_i$ 的梯度是<br>$$<br>\frac{\partial} {\partial H_i}=2\lambda(H_i-(R^1S^1)_i)+2\lambda(H_i-(R^2S^2)_i)\<br>-2\mu R</em>{i-1}\phi(H_i)\odot(1-\phi(H_i)\odot\phi(H_i)) \tag{11}<br>$$</p>
+<p> 求解：L-BFGS(拟牛顿法)</p>
+</li>
+</ol>
+<ol start="3">
+<li>优化$B$($R$的优化过程相近)：<br>$$<br>\underset {B^1} {min} \ ||X^1-B^1S^1||^2_2 \<br>s.t. ||B^1_{\cdot i}||_2\le1 \tag{12}<br>$$<br>根据拉格朗日乘数法构造其对偶问题为：</li>
+</ol>
+<p>​<br>$$<br>g(B^1,\Theta)=||X^1-B^1S^1||^2_2+Tr{\Theta(B^TB-I)} \tag{13}<br>$$<br>​    式$(11)$对$B^1$求导并令导数为0可得<br>$$<br>B^1=X^1(S^1)^T(S^1(S^1)^T+\Theta)^{-1} \tag{14}<br>$$<br>​    将式$(12)$带入式$(11)$得<br>$$<br>\underset{\Theta}{min}\ Tr{X^1(S^1)^T(S^1(S^1)^T+\Theta)^{-1}S^1(X^1)^T}+Tr{\Theta} \<br>s.t. \Theta_{ii}\ge0,i=1,…,k \tag{15}<br>$$</p>
+<p>​    求解：牛顿法或共轭梯度法</p>
+]]></content>
+      <categories>
+        <category>Hash Learning</category>
+      </categories>
+      <tags>
+        <tag>Hash Learning</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test3</title>
     <url>/2020/02/05/test3/</url>
     <content><![CDATA[<h2 id="NOTHING"><a href="#NOTHING" class="headerlink" title="NOTHING"></a>NOTHING</h2>]]></content>

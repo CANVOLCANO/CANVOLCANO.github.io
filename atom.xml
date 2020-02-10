@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-05T15:18:59.081Z</updated>
+  <updated>2020-02-10T14:11:20.394Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HL1</title>
+    <link href="http://yoursite.com/2020/02/10/HL1/"/>
+    <id>http://yoursite.com/2020/02/10/HL1/</id>
+    <published>2020-02-10T14:06:56.000Z</published>
+    <updated>2020-02-10T14:11:20.394Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;针对跨模态检索、基于哈希的字典学习&quot;&gt;&lt;a href=&quot;#针对跨模态检索、基于哈希的字典学习&quot; class=&quot;headerlink&quot; title=&quot;针对跨模态检索、基于哈希的字典学习&quot;&gt;&lt;/a&gt;针对跨模态检索、基于哈希的字典学习&lt;/h2&gt;&lt;p&gt;&lt;b&gt;Xu,
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Hash Learning" scheme="http://yoursite.com/categories/Hash-Learning/"/>
+    
+    
+      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>test3</title>
