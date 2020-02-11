@@ -83,6 +83,14 @@
     
 
     
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
 
     <div class="article-entry" itemprop="articleBody">
       
@@ -216,7 +224,7 @@ s.t. \Theta_{ii}\ge0,i=1,...,k \tag{15}</script><p>​    求解：牛顿法或�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/10/HL1/" data-id="ck6hxo9n00001k8lu4uwydhjg"
+      <a data-url="http://yoursite.com/2020/02/10/HL1/" data-id="ck6hxubse0002z8lu65nnfkkg"
         class="article-share-link">分享</a>
         
       
@@ -455,6 +463,30 @@ s.t. \Theta_{ii}\ge0,i=1,...,k \tag{15}</script><p>​    求解：牛顿法或�
 </script>
 
 
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
 
 
 <script>
