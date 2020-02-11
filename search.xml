@@ -81,7 +81,8 @@ code_r (x_i)\circ code_r(x_j)=r-2D_h(x_i,x_j)                                   
 \tag{7}</script><p>其中，限制是为了防止平凡的解。</p>
 <h4 id="优化过程"><a href="#优化过程" class="headerlink" title="优化过程"></a>优化过程</h4><p>考虑固定其他的变量，每次优化一个变量，进行迭代优化.</p>
 <ol>
-<li>优化$S^1$:<script type="math/tex; mode=display">
+<li><p>优化$S^1$:</p>
+<script type="math/tex; mode=display">
 \underset{S^1} {min} \ ||X^1-B^1S^1||^2_2+\rho\sum^n_{i=1}|S^1_i|+\lambda||H-R^1S^1||^2_2 \\ \Rightarrow \underset{S^1} {min} \ 
 ||\left[
  \begin{matrix}
@@ -96,8 +97,6 @@ B^1\\
   \end{matrix} 
 \right]S^1||^2_2
 +\rho \sum^n_{i=1}|S^1_i| \tag{8}</script></li>
-</ol>
-<ol>
 <li><p>优化$H$（每次优化$H$的一行$H_i$）：</p>
 <script type="math/tex; mode=display">
 \underset{H_i} {min}\ \lambda(||H_i-(R^1S^1)_i||^2_2+||H_i-(R^2S^2)_i||^2_2)+\\
@@ -108,20 +107,19 @@ R_{i-1}=rS-\sum^{i-1}_{t=1}\phi(H_t)^T\phi(H_t) \tag{10}</script><p>式$(7)$对 
 \frac{\partial} {\partial H_i}=2\lambda(H_i-(R^1S^1)_i)+2\lambda(H_i-(R^2S^2)_i)\\
 -2\mu R_{i-1}\phi(H_i)\odot(1-\phi(H_i)\odot\phi(H_i)) \tag{11}</script><p> 求解：L-BFGS(拟牛顿法)</p>
 </li>
-</ol>
-<ol>
-<li>优化$B$($R$的优化过程相近)：<script type="math/tex; mode=display">
+<li><p>优化$B$($R$的优化过程相近)：</p>
+<script type="math/tex; mode=display">
 \underset {B^1} {min} \ ||X^1-B^1S^1||^2_2 \\
-s.t. ||B^1_{\cdot i}||_2\le1 \tag{12}</script>根据拉格朗日乘数法构造其对偶问题为：</li>
-</ol>
-<p>​        </p>
+s.t. ||B^1_{\cdot i}||_2\le1 \tag{12}</script><p>根据拉格朗日乘数法构造其对偶问题为：</p>
 <script type="math/tex; mode=display">
-g(B^1,\Theta)=||X^1-B^1S^1||^2_2+Tr\{\Theta(B^TB-I)\} \tag{13}</script><p>​    式$(11)$对$B^1$求导并令导数为0可得</p>
+g(B^1,\Theta)=||X^1-B^1S^1||^2_2+Tr\{\Theta(B^TB-I)\} \tag{13}</script><p>​式$(11)$对$B^1$求导并令导数为0可得</p>
 <script type="math/tex; mode=display">
-B^1=X^1(S^1)^T(S^1(S^1)^T+\Theta)^{-1} \tag{14}</script><p>​    将式$(12)$带入式$(11)$得</p>
+B^1=X^1(S^1)^T(S^1(S^1)^T+\Theta)^{-1} \tag{14}</script><p>将式$(12)$带入式$(11)$得</p>
 <script type="math/tex; mode=display">
 \underset{\Theta}{min}\ Tr\{X^1(S^1)^T(S^1(S^1)^T+\Theta)^{-1}S^1(X^1)^T\}+Tr\{\Theta\} \\
-s.t. \Theta_{ii}\ge0,i=1,...,k \tag{15}</script><p>​    求解：牛顿法或共轭梯度法</p>
+s.t. \Theta_{ii}\ge0,i=1,...,k \tag{15}</script><p>​求解：牛顿法或共轭梯度法</p>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>Hash Learning</category>
