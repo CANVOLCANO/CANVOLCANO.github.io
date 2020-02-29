@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-11T14:48:19.321Z</updated>
+  <updated>2020-02-29T07:46:43.297Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DL1</title>
+    <link href="http://yoursite.com/2020/02/29/DL1/"/>
+    <id>http://yoursite.com/2020/02/29/DL1/</id>
+    <published>2020-02-29T03:30:43.000Z</published>
+    <updated>2020-02-29T07:46:43.297Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;a href=&quot;#基于VGG16实现CIFAR10分类&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/categories/Deep-Learning/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="Computer Vision" scheme="http://yoursite.com/tags/Computer-Vision/"/>
+    
+  </entry>
   
   <entry>
     <title>HL1</title>
@@ -39,9 +70,9 @@
       <category term="Hash Learning" scheme="http://yoursite.com/categories/Hash-Learning/"/>
     
     
-      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
-    
       <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
     
   </entry>
   
