@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-29T07:46:43.297Z</updated>
+  <updated>2020-02-29T09:06:05.782Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,12 @@
     <link href="http://yoursite.com/2020/02/29/DL1/"/>
     <id>http://yoursite.com/2020/02/29/DL1/</id>
     <published>2020-02-29T03:30:43.000Z</published>
-    <updated>2020-02-29T07:46:43.297Z</updated>
+    <updated>2020-02-29T09:06:05.782Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h3 id=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;a href=&quot;#基于VGG16实现CIFAR10分类&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h3 id=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;a href=&quot;#基于VGG16实现CIFAR10分类&quot; class=&quot;headerlink&quot; title=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;/a&gt;基于VGG16实现CIFAR10分类&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;​        最近看了下VGG16的论文，顺便用PyTorch实现了网络的结构，数据集是CIFAR10。当然，网络的部分的结构要稍作修改。&lt;/p&gt;
     
     </summary>
     
@@ -52,17 +47,15 @@
     <link href="http://yoursite.com/2020/02/10/HL1/"/>
     <id>http://yoursite.com/2020/02/10/HL1/</id>
     <published>2020-02-10T14:06:56.000Z</published>
-    <updated>2020-02-11T14:48:19.321Z</updated>
+    <updated>2020-02-29T09:06:30.180Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;针对跨模态检索、基于哈希的字典学习&quot;&gt;&lt;a href=&quot;#针对跨模态检索、基于哈希的字典学习&quot; class=&quot;headerlink&quot; title=&quot;针对跨模态检索、基于哈希的字典学习&quot;&gt;&lt;/a&gt;针对跨模态检索、基于哈希的字典学习&lt;/h2&gt;&lt;p&gt;&lt;b&gt;Xu,
-        
-      
+      &lt;h2 id=&quot;针对跨模态检索、基于哈希的字典学习&quot;&gt;&lt;a href=&quot;#针对跨模态检索、基于哈希的字典学习&quot; class=&quot;headerlink&quot; title=&quot;针对跨模态检索、基于哈希的字典学习&quot;&gt;&lt;/a&gt;针对跨模态检索、基于哈希的字典学习&lt;/h2&gt;&lt;p&gt;&lt;b&gt;Xu, Xin-Shun. “Dictionary learning based hashing for cross-modal retrieval.” &lt;em&gt;Proceedings of the 24th ACM international conference on Multimedia&lt;/em&gt;. ACM, 2016. &lt;/b&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Integrated-Hash&quot;&gt;&lt;a href=&quot;#Integrated-Hash&quot; class=&quot;headerlink&quot; title=&quot;Integrated Hash&quot;&gt;&lt;/a&gt;Integrated Hash&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;之前：把不同模态的数据直接投影到同一个空间，但是由于某些语义上相近的数据在隐空间(latent space)投影后难以靠近造成误差。&lt;/li&gt;
+&lt;li&gt;改进：并不是直接对不同模态的数据进行投影，而是首先先为每个模态学习出字典并构造出数据的稀疏表示，再对稀疏表示进行线性投影。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -70,111 +63,9 @@
       <category term="Hash Learning" scheme="http://yoursite.com/categories/Hash-Learning/"/>
     
     
-      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
-    
       <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
     
-  </entry>
-  
-  <entry>
-    <title>test3</title>
-    <link href="http://yoursite.com/2020/02/05/test3/"/>
-    <id>http://yoursite.com/2020/02/05/test3/</id>
-    <published>2020-02-05T15:18:20.000Z</published>
-    <updated>2020-02-05T15:18:59.081Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;NOTHING&quot;&gt;&lt;a href=&quot;#NOTHING&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="TEST1" scheme="http://yoursite.com/categories/TEST1/"/>
-    
-    
-      <category term="测试1" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%951/"/>
-    
-      <category term="测试2" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%952/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>test2</title>
-    <link href="http://yoursite.com/2020/02/05/test2/"/>
-    <id>http://yoursite.com/2020/02/05/test2/</id>
-    <published>2020-02-05T15:00:49.000Z</published>
-    <updated>2020-02-05T15:07:10.986Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;nothing&quot;&gt;&lt;a href=&quot;#nothing&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="测试" scheme="http://yoursite.com/categories/%E6%B5%8B%E8%AF%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test1</title>
-    <link href="http://yoursite.com/2020/02/04/test1/"/>
-    <id>http://yoursite.com/2020/02/04/test1/</id>
-    <published>2020-02-04T10:41:49.000Z</published>
-    <updated>2020-02-04T10:48:37.237Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;dasdf&quot;&gt;&lt;a href=&quot;#dasdf&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="测试" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/1970/01/01/hello-world/"/>
-    <id>http://yoursite.com/1970/01/01/hello-world/</id>
-    <published>1970-01-01T00:00:00.000Z</published>
-    <updated>2020-02-04T08:41:22.361Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
-        
-      
-    
-    </summary>
-    
-    
+      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
     
   </entry>
   
