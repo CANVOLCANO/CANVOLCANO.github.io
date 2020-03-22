@@ -105,6 +105,7 @@
 </ul>
 <p>两篇文章的感受：</p>
 <p>​    首先ResNet解决的并不是overfit的问题。overfit是在训练集上有很好的效果，但是在测试集上很弱。然而，很深的CNN网络在训练时收敛时的性能在训练集上都达不到浅网络的效果。</p>
+<a id="more"></a>
 <p>​    其次，引入shortcut实际上没有完全进行identity map的工作，因为如果shortcut只能完成identity map的工作的话，深网络的性能的上限就是浅网络的性能（一个浅网络加上若干层shortcut构建一个深网络），但是引入shortcut后深网络的性能其实是超过浅网络的，换句话说，学习到的残差$F(x)=H(x)-x$不可能完全为0，并未完全实现identity map。</p>
 <p>​    个人认为，直观上，ResNet较为优异的性能来源于网络最后既可以学习到高层语义特征，也可以较好的学习到底层特征，而且反向传播时梯度信息可以方便的反馈到前边任何一层。但是，这还只能粗略的解释其较优异性能，就其数学本质而言，有的人认为ResNet相较于普通的CNN具有一定的差分方程自适应性，几何上相当于构造了更平滑的流形解空间，从而具有更好的收敛性。</p>
 <p>​     其实在ReLU之前，在HighwayNet文章中已经有类似的结构，甚至ResNet就是HighwayNet的一种特例，也即，ResNet的解空间的只是HighwayNet解空间的子集。那么为什么HighwayNet的性能反而不如ResNet呢？作者在第二篇文章中给出的答案是，HighwayNet的类似于LSTM的gate机制过于复杂，更难优化，换句说，”keeping a “clean” information path”更重要。</p>

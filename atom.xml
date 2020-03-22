@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-22T00:51:11.181Z</updated>
+  <updated>2020-03-22T00:55:32.327Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,19 +21,17 @@
     <link href="http://yoursite.com/2020/03/13/ResNet/"/>
     <id>http://yoursite.com/2020/03/13/ResNet/</id>
     <published>2020-03-13T13:23:32.000Z</published>
-    <updated>2020-03-22T00:51:11.181Z</updated>
+    <updated>2020-03-22T00:55:32.327Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;​    最近抽空读了一直想读的ResNet的那两篇文章。&lt;/p&gt;
+      &lt;p&gt;​    最近抽空读了一直想读的ResNet的那两篇文章。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1512.03385&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Deep Residual
-        
-      
+&lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1512.03385&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1603.05027&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Identity Mappings in Deep Residual Networks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两篇文章的感受：&lt;/p&gt;
+&lt;p&gt;​    首先ResNet解决的并不是overfit的问题。overfit是在训练集上有很好的效果，但是在测试集上很弱。然而，很深的CNN网络在训练时收敛时的性能在训练集上都达不到浅网络的效果。&lt;/p&gt;
     
     </summary>
     
