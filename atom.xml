@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-22T09:56:50.765Z</updated>
+  <updated>2020-03-22T09:58:35.162Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/03/13/ResNet/"/>
     <id>http://yoursite.com/2020/03/13/ResNet/</id>
     <published>2020-03-13T13:23:32.000Z</published>
-    <updated>2020-03-22T09:56:50.765Z</updated>
+    <updated>2020-03-22T09:58:35.162Z</updated>
     
     <summary type="html">
     
@@ -52,12 +52,12 @@
     <link href="http://yoursite.com/2020/02/29/DL1/"/>
     <id>http://yoursite.com/2020/02/29/DL1/</id>
     <published>2020-02-29T03:30:43.000Z</published>
-    <updated>2020-02-29T09:06:05.782Z</updated>
+    <updated>2020-03-22T09:58:44.821Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;a href=&quot;#基于VGG16实现CIFAR10分类&quot; class=&quot;headerlink&quot; title=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;/a&gt;基于VGG16实现CIFAR10分类&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;​        最近看了下VGG16的论文，顺便用PyTorch实现了网络的结构，数据集是CIFAR10。当然，网络的部分的结构要稍作修改。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;最近看了下VGG16的论文，顺便用PyTorch实现了网络的结构，数据集是CIFAR10。当然，网络的部分的结构要稍作修改。&lt;/p&gt;
     
     </summary>
     
@@ -78,7 +78,7 @@
     <link href="http://yoursite.com/2020/02/10/HL1/"/>
     <id>http://yoursite.com/2020/02/10/HL1/</id>
     <published>2020-02-10T14:06:56.000Z</published>
-    <updated>2020-02-29T09:06:30.180Z</updated>
+    <updated>2020-03-22T09:58:53.659Z</updated>
     
     <summary type="html">
     
@@ -94,9 +94,9 @@
       <category term="Hash Learning" scheme="http://yoursite.com/categories/Hash-Learning/"/>
     
     
-      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
-    
       <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
     
   </entry>
   
