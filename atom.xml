@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>趙燦哲</title>
+  <title>Canzhe&#39;s Blog</title>
   
   
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>趙燦哲</name>
+    <name>燦哲</name>
     
   </author>
   
@@ -94,9 +94,9 @@
       <category term="Hash Learning" scheme="http://yoursite.com/categories/Hash-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
-    
       <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
     
   </entry>
   
