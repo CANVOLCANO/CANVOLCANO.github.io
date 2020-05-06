@@ -6,22 +6,53 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-22T09:58:35.162Z</updated>
+  <updated>2020-05-06T13:59:40.267Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>燦哲</name>
+    <name>趙燦哲</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Text_classification_via_DL</title>
+    <link href="http://yoursite.com/2020/05/01/Text-classification-via-DL/"/>
+    <id>http://yoursite.com/2020/05/01/Text-classification-via-DL/</id>
+    <published>2020-05-01T02:55:48.000Z</published>
+    <updated>2020-05-06T13:59:40.267Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Convolutional-Neural-Networks-for-Sentence-Classification&quot;&gt;&lt;a href=&quot;#Convolutional-Neural-Networks-for-Sentence-Classification&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ResNet</title>
     <link href="http://yoursite.com/2020/03/13/ResNet/"/>
     <id>http://yoursite.com/2020/03/13/ResNet/</id>
     <published>2020-03-13T13:23:32.000Z</published>
-    <updated>2020-03-22T09:58:35.162Z</updated>
+    <updated>2020-05-03T04:17:00.359Z</updated>
     
     <summary type="html">
     
@@ -94,9 +125,9 @@
       <category term="Hash Learning" scheme="http://yoursite.com/categories/Hash-Learning/"/>
     
     
-      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
-    
       <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="Hash Learning" scheme="http://yoursite.com/tags/Hash-Learning/"/>
     
   </entry>
   
