@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-06T13:59:40.267Z</updated>
+  <updated>2020-05-06T14:04:32.218Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,16 @@
     <link href="http://yoursite.com/2020/05/01/Text-classification-via-DL/"/>
     <id>http://yoursite.com/2020/05/01/Text-classification-via-DL/</id>
     <published>2020-05-01T02:55:48.000Z</published>
-    <updated>2020-05-06T13:59:40.267Z</updated>
+    <updated>2020-05-06T14:04:32.218Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;Convolutional-Neural-Networks-for-Sentence-Classification&quot;&gt;&lt;a href=&quot;#Convolutional-Neural-Networks-for-Sentence-Classification&quot;
-        
-      
+      &lt;h2 id=&quot;Convolutional-Neural-Networks-for-Sentence-Classification&quot;&gt;&lt;a href=&quot;#Convolutional-Neural-Networks-for-Sentence-Classification&quot; class=&quot;headerlink&quot; title=&quot;Convolutional Neural Networks for Sentence Classification&quot;&gt;&lt;/a&gt;&lt;em&gt;Convolutional Neural Networks for Sentence Classification&lt;/em&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;输入：词向量$x\in R^{300}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CBoW预训练&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不在BoW预训练中的词随机初始化&lt;/p&gt;
     
     </summary>
     

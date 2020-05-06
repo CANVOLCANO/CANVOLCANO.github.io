@@ -6,8 +6,11 @@
     <content><![CDATA[<h2 id="Convolutional-Neural-Networks-for-Sentence-Classification"><a href="#Convolutional-Neural-Networks-for-Sentence-Classification" class="headerlink" title="Convolutional Neural Networks for Sentence Classification"></a><em>Convolutional Neural Networks for Sentence Classification</em></h2><ol>
 <li><p>输入：词向量$x\in R^{300}$</p>
 <ul>
-<li>CBoW预训练</li>
-<li>不在BoW预训练中的词随机初始化</li>
+<li><p>CBoW预训练</p>
+</li>
+<li><p>不在BoW预训练中的词随机初始化</p>
+<a id="more"></a>
+</li>
 </ul>
 </li>
 <li><p>网络的结构：</p>
