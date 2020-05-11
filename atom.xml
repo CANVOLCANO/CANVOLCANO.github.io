@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-06T14:08:28.771Z</updated>
+  <updated>2020-05-11T10:01:03.580Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Attention</title>
+    <link href="http://yoursite.com/2020/05/11/Attention/"/>
+    <id>http://yoursite.com/2020/05/11/Attention/</id>
+    <published>2020-05-11T10:01:03.000Z</published>
+    <updated>2020-05-11T10:01:03.580Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Text_classification_via_DL</title>
-    <link href="http://yoursite.com/2020/05/01/Text-classification-via-DL/"/>
-    <id>http://yoursite.com/2020/05/01/Text-classification-via-DL/</id>
+    <link href="http://yoursite.com/2020/05/01/Text%20classification%20via%20DL/"/>
+    <id>http://yoursite.com/2020/05/01/Text%20classification%20via%20DL/</id>
     <published>2020-05-01T02:55:48.000Z</published>
-    <updated>2020-05-06T14:08:28.771Z</updated>
+    <updated>2020-05-11T08:52:31.835Z</updated>
     
     <summary type="html">
     
@@ -51,7 +66,7 @@
     <link href="http://yoursite.com/2020/03/13/ResNet/"/>
     <id>http://yoursite.com/2020/03/13/ResNet/</id>
     <published>2020-03-13T13:23:32.000Z</published>
-    <updated>2020-05-03T04:17:00.359Z</updated>
+    <updated>2020-05-11T08:52:27.424Z</updated>
     
     <summary type="html">
     
@@ -61,7 +76,6 @@
 &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1603.05027&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Identity Mappings in Deep Residual Networks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;两篇文章的感受：&lt;/p&gt;
-&lt;p&gt;&amp;emsp;首先ResNet解决的并不是overfit的问题。overfit是在训练集上有很好的效果，但是在测试集上很弱。然而，很深的CNN网络在训练时收敛时的性能在训练集上都达不到浅网络的效果。&lt;/p&gt;
     
     </summary>
     
@@ -82,12 +96,13 @@
     <link href="http://yoursite.com/2020/02/29/DL1/"/>
     <id>http://yoursite.com/2020/02/29/DL1/</id>
     <published>2020-02-29T03:30:43.000Z</published>
-    <updated>2020-03-22T09:58:44.821Z</updated>
+    <updated>2020-05-11T08:52:42.692Z</updated>
     
     <summary type="html">
     
       &lt;h3 id=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;a href=&quot;#基于VGG16实现CIFAR10分类&quot; class=&quot;headerlink&quot; title=&quot;基于VGG16实现CIFAR10分类&quot;&gt;&lt;/a&gt;基于VGG16实现CIFAR10分类&lt;/h3&gt;&lt;hr&gt;
 &lt;p&gt;&amp;emsp;最近看了下VGG16的论文，顺便用PyTorch实现了网络的结构，数据集是CIFAR10。当然，网络的部分的结构要稍作修改。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;具体来说，网络修改部分如下：&lt;/p&gt;
     
     </summary>
     
