@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-11T10:01:03.580Z</updated>
+  <updated>2020-05-11T10:09:38.741Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NLPBeginnerExp2 Text Match via Attention</title>
+    <link href="http://yoursite.com/2020/05/11/NLPBeginnerExp2-Text-Match-via-Attention/"/>
+    <id>http://yoursite.com/2020/05/11/NLPBeginnerExp2-Text-Match-via-Attention/</id>
+    <published>2020-05-11T10:09:38.000Z</published>
+    <updated>2020-05-11T10:09:38.741Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Attention</title>
