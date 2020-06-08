@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-11T08:52:31.835Z</updated>
+  <updated>2020-06-08T15:29:54.996Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,9 +17,60 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>shixun 06 08</title>
+    <link href="http://yoursite.com/2020/06/08/shixun-06-08/"/>
+    <id>http://yoursite.com/2020/06/08/shixun-06-08/</id>
+    <published>2020-06-08T15:22:43.000Z</published>
+    <updated>2020-06-08T15:29:54.996Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;今天做了什么&quot;&gt;&lt;a href=&quot;#今天做了什么&quot; class=&quot;headerlink&quot; title=&quot;今天做了什么&quot;&gt;&lt;/a&gt;今天做了什么&lt;/h2&gt;&lt;p&gt;今天开了两次线上会议。&lt;/p&gt;
+&lt;h2 id=&quot;往后一周半的安排&quot;&gt;&lt;a href=&quot;#往后一周半的安排&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SummerProject" scheme="http://yoursite.com/categories/SummerProject/"/>
+    
+    
+      <category term="SummerProject" scheme="http://yoursite.com/tags/SummerProject/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NLPEexp3:Text Match via Attention</title>
+    <link href="http://yoursite.com/2020/05/12/NLPEexp3-Text-Match-via-Attention/"/>
+    <id>http://yoursite.com/2020/05/12/NLPEexp3-Text-Match-via-Attention/</id>
+    <published>2020-05-12T13:52:34.000Z</published>
+    <updated>2020-05-13T03:30:29.972Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Enhanced-LSTM-for-Natural-Language-Inference&quot;&gt;&lt;a href=&quot;#Enhanced-LSTM-for-Natural-Language-Inference&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Text_classification_via_DL</title>
-    <link href="http://yoursite.com/2020/05/01/Text%20classification%20via%20DL/"/>
-    <id>http://yoursite.com/2020/05/01/Text%20classification%20via%20DL/</id>
+    <link href="http://yoursite.com/2020/05/01/Text-classification-via-DL/"/>
+    <id>http://yoursite.com/2020/05/01/Text-classification-via-DL/</id>
     <published>2020-05-01T02:55:48.000Z</published>
     <updated>2020-05-11T08:52:31.835Z</updated>
     
@@ -108,7 +159,7 @@
     <link href="http://yoursite.com/2020/02/10/HL1/"/>
     <id>http://yoursite.com/2020/02/10/HL1/</id>
     <published>2020-02-10T14:06:56.000Z</published>
-    <updated>2020-03-22T09:58:53.659Z</updated>
+    <updated>2020-05-17T13:45:08.941Z</updated>
     
     <summary type="html">
     

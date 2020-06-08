@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>shixun 06 08</title>
+    <url>/2020/06/08/shixun-06-08/</url>
+    <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><p>今天开了两次线上会议。</p>
+<h2 id="往后一周半的安排"><a href="#往后一周半的安排" class="headerlink" title="往后一周半的安排"></a>往后一周半的安排</h2><ol>
+<li>06.09-06.10 搭建模型</li>
+<li>06.11-06.12 模型调优1</li>
+<li>06.13-06.14 数据扩增&amp;模型调优</li>
+<li>06.15 模型部署</li>
+<li>06.16 bilibili 模型搭建&amp;训练</li>
+<li>06.17 B站模型部署</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SummerProject</category>
+      </categories>
+      <tags>
+        <tag>SummerProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NLPEexp3:Text Match via Attention</title>
+    <url>/2020/05/12/NLPEexp3-Text-Match-via-Attention/</url>
+    <content><![CDATA[<h2 id="Enhanced-LSTM-for-Natural-Language-Inference"><a href="#Enhanced-LSTM-for-Natural-Language-Inference" class="headerlink" title="Enhanced LSTM for Natural Language Inference"></a><em>Enhanced LSTM for Natural Language Inference</em></h2><ol>
+<li>使用BiLSTM预处理，当前位置的两个反向hidden state拼接得到当前位置的最终hidden state。</li>
+<li>sequential inference model 收集的是词及其上下文信息，tree LSTM收集的是短语和从句间的信息。</li>
+<li>使用soft attention，计算两个premise和hypothesis间的attention权重。</li>
+<li>内积计算相似度。</li>
+<li><p><img src="https://i.loli.net/2020/05/12/6ZtbTQjOUxRFghp.png" alt="image-20200512223140649"></p>
+</li>
+<li><p>最后使用3层的MLP（tanh做hidden layer的激活函数）。</p>
+</li>
+<li>整个模型取交叉熵损失函数。</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>Text_classification_via_DL</title>
-    <url>/2020/05/01/Text%20classification%20via%20DL/</url>
+    <url>/2020/05/01/Text-classification-via-DL/</url>
     <content><![CDATA[<h2 id="Convolutional-Neural-Networks-for-Sentence-Classification"><a href="#Convolutional-Neural-Networks-for-Sentence-Classification" class="headerlink" title="Convolutional Neural Networks for Sentence Classification"></a><em>Convolutional Neural Networks for Sentence Classification</em></h2><ol>
 <li><p>输入：词向量$x\in R^{300}$</p>
 <ul>
