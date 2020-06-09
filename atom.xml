@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-08T15:29:54.996Z</updated>
+  <updated>2020-06-09T16:02:45.418Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SummerProject 06 09</title>
+    <link href="http://yoursite.com/2020/06/09/SummerProject-06-09/"/>
+    <id>http://yoursite.com/2020/06/09/SummerProject-06-09/</id>
+    <published>2020-06-09T15:59:24.000Z</published>
+    <updated>2020-06-09T16:02:45.418Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;今天做了什么&quot;&gt;&lt;a href=&quot;#今天做了什么&quot; class=&quot;headerlink&quot; title=&quot;今天做了什么&quot;&gt;&lt;/a&gt;今天做了什么&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;搭建了初步的模型代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;明天要做什么&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SummerProject" scheme="http://yoursite.com/categories/SummerProject/"/>
+    
+    
+      <category term="SummerProject" scheme="http://yoursite.com/tags/SummerProject/"/>
+    
+  </entry>
   
   <entry>
     <title>shixun 06 08</title>
@@ -46,8 +76,8 @@
   
   <entry>
     <title>NLPEexp3:Text Match via Attention</title>
-    <link href="http://yoursite.com/2020/05/12/NLPEexp3-Text-Match-via-Attention/"/>
-    <id>http://yoursite.com/2020/05/12/NLPEexp3-Text-Match-via-Attention/</id>
+    <link href="http://yoursite.com/2020/05/12/NLPExp3-Text-Match-via-Attention/"/>
+    <id>http://yoursite.com/2020/05/12/NLPExp3-Text-Match-via-Attention/</id>
     <published>2020-05-12T13:52:34.000Z</published>
     <updated>2020-05-13T03:30:29.972Z</updated>
     

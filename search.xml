@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SummerProject 06 09</title>
+    <url>/2020/06/09/SummerProject-06-09/</url>
+    <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
+<li>搭建了初步的模型代码</li>
+</ol>
+<h2 id="明天要做什么"><a href="#明天要做什么" class="headerlink" title="明天要做什么"></a>明天要做什么</h2><ol>
+<li>尝试把模型修改为<strong>可动态自适应输入图片大小的模型</strong>。</li>
+<li>完成<strong>自动生成验证码</strong>的代码。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SummerProject</category>
+      </categories>
+      <tags>
+        <tag>SummerProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>shixun 06 08</title>
     <url>/2020/06/08/shixun-06-08/</url>
     <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><p>今天开了两次线上会议。</p>
@@ -22,7 +40,7 @@
   </entry>
   <entry>
     <title>NLPEexp3:Text Match via Attention</title>
-    <url>/2020/05/12/NLPEexp3-Text-Match-via-Attention/</url>
+    <url>/2020/05/12/NLPExp3-Text-Match-via-Attention/</url>
     <content><![CDATA[<h2 id="Enhanced-LSTM-for-Natural-Language-Inference"><a href="#Enhanced-LSTM-for-Natural-Language-Inference" class="headerlink" title="Enhanced LSTM for Natural Language Inference"></a><em>Enhanced LSTM for Natural Language Inference</em></h2><ol>
 <li>使用BiLSTM预处理，当前位置的两个反向hidden state拼接得到当前位置的最终hidden state。</li>
 <li>sequential inference model 收集的是词及其上下文信息，tree LSTM收集的是短语和从句间的信息。</li>
