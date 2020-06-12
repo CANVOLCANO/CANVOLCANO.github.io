@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SummerProject 06 11</title>
+    <url>/2020/06/11/SummerProject-06-11/</url>
+    <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
+<li>训练了模型，10万张training_set，1万张test_set，准确率大概在76%。还可以有很大的提升空间</li>
+<li>整理了生成验证码、验证码识别的API，并同后端简单交接了一下。</li>
+</ol>
+<h2 id="明天要做什么"><a href="#明天要做什么" class="headerlink" title="明天要做什么"></a>明天要做什么</h2><ol>
+<li>改进模型。初步打算将backbone换成ResNet32。</li>
+<li>研究基于Attention+CTCLoss+LSTM的模型。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SummerProject</category>
+      </categories>
+      <tags>
+        <tag>SummerProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SummerProject 06 09</title>
     <url>/2020/06/09/SummerProject-06-09/</url>
     <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
