@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SummerProject 06 13</title>
+    <url>/2020/06/13/SummerProject-06-13/</url>
+    <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
+<li>帮后端解决了一些BUG，后端因为是MAC，没有办法跑我在GPU上训练出来的模型，所有有关模型和后端的整合我做完后在自己的机器上进行了测试。</li>
+<li>PR时出了点问题，在健洲的帮助下新建了分支再次进行了提交后就把问题解决。</li>
+</ol>
+<h2 id="明天要做什么"><a href="#明天要做什么" class="headerlink" title="明天要做什么"></a>明天要做什么</h2><ol>
+<li>帮助他们整合前端和后端。</li>
+<li>尝试新的模型，时间有些紧张。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SummerProject</category>
+      </categories>
+      <tags>
+        <tag>SummerProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SummerProject 06 11</title>
     <url>/2020/06/11/SummerProject-06-11/</url>
     <content><![CDATA[<h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
-<li>训练了模型，10万张training_set，1万张test_set，准确率大概在76%。还可以有很大的提升空间</li>
+<li>训练了模型，10万张training_set，1万张test_set，准确率大概在76%。还可以有很大的提升空间。</li>
 <li>整理了生成验证码、验证码识别的API，并同后端简单交接了一下。</li>
 </ol>
 <h2 id="明天要做什么"><a href="#明天要做什么" class="headerlink" title="明天要做什么"></a>明天要做什么</h2><ol>
