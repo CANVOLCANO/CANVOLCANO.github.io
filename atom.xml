@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-10T07:43:55.459Z</updated>
+  <updated>2020-07-10T07:55:41.443Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,21 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>node2vec Scalable Feature Learning for Networks</title>
+    <link href="http://yoursite.com/2020/07/10/node2vec-Scalable-Feature-Learning-for-Networks/"/>
+    <id>http://yoursite.com/2020/07/10/node2vec-Scalable-Feature-Learning-for-Networks/</id>
+    <published>2020-07-10T07:54:45.000Z</published>
+    <updated>2020-07-10T07:55:41.443Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;node2vec-Scalable-Feature-Learning-for-Networks&quot;&gt;&lt;a href=&quot;#node2vec-Scalable-Feature-Learning-for-Networks&quot; class=&quot;headerlink&quot; title=&quot;node2vec Scalable Feature Learning for Networks&quot;&gt;&lt;/a&gt;&lt;em&gt;node2vec Scalable Feature Learning for Networks&lt;/em&gt;&lt;/h2&gt;&lt;h3 id=&quot;一-解决的问题&quot;&gt;&lt;a href=&quot;#一-解决的问题&quot; class=&quot;headerlink&quot; title=&quot;一.解决的问题&quot;&gt;&lt;/a&gt;一.解决的问题&lt;/h3&gt;&lt;p&gt;网络表示学习（Network Representation Learning）或网络嵌入（Network Embedding）或图嵌入（Graph Embedding）。直接目标是得到给定图的每个节点在低维空间的embedding，可以为链接预测、节点分类、可视化等下游任务提供支撑。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NAACL2016-Hierarchical Attention Networks for Document Classification</title>
     <link href="http://yoursite.com/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/"/>
     <id>http://yoursite.com/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/</id>
     <published>2020-07-05T08:50:06.000Z</published>
-    <updated>2020-07-10T07:43:55.459Z</updated>
+    <updated>2020-07-10T07:53:26.358Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;Hierarchical-Attention-Networks-for-Document-Classification&quot;&gt;&lt;a href=&quot;#Hierarchical-Attention-Networks-for-Document-Classification&quot;
-        
-      
+      &lt;h2 id=&quot;Hierarchical-Attention-Networks-for-Document-Classification&quot;&gt;&lt;a href=&quot;#Hierarchical-Attention-Networks-for-Document-Classification&quot; class=&quot;headerlink&quot; title=&quot;Hierarchical Attention Networks for Document Classification&quot;&gt;&lt;/a&gt;&lt;em&gt;Hierarchical Attention Networks for Document Classification&lt;/em&gt;&lt;/h2&gt;&lt;h3 id=&quot;一-解决的问题&quot;&gt;&lt;a href=&quot;#一-解决的问题&quot; class=&quot;headerlink&quot; title=&quot;一.解决的问题&quot;&gt;&lt;/a&gt;一.解决的问题&lt;/h3&gt;&lt;p&gt;本文解决的问题是通过doc2vec的建模，来实现文本分类问题。下游任务有很多，例如情感分类、垃圾邮件识别等。&lt;/p&gt;
+&lt;h3 id=&quot;二-解决方案&quot;&gt;&lt;a href=&quot;#二-解决方案&quot; class=&quot;headerlink&quot; title=&quot;二.解决方案&quot;&gt;&lt;/a&gt;二.解决方案&lt;/h3&gt;&lt;h4 id=&quot;1-动机&quot;&gt;&lt;a href=&quot;#1-动机&quot; class=&quot;headerlink&quot; title=&quot;1.动机&quot;&gt;&lt;/a&gt;1.动机&lt;/h4&gt;
     
     </summary>
     
@@ -50,17 +68,11 @@
     <link href="http://yoursite.com/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/"/>
     <id>http://yoursite.com/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/</id>
     <published>2020-07-05T08:49:06.000Z</published>
-    <updated>2020-07-10T07:45:18.475Z</updated>
+    <updated>2020-07-10T07:53:22.456Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;Translating-Embeddings-for-Modeling-Multi-relational-data&quot;&gt;&lt;a href=&quot;#Translating-Embeddings-for-Modeling-Multi-relational-data&quot;
-        
-      
+      &lt;h2 id=&quot;Translating-Embeddings-for-Modeling-Multi-relational-data&quot;&gt;&lt;a href=&quot;#Translating-Embeddings-for-Modeling-Multi-relational-data&quot; class=&quot;headerlink&quot; title=&quot;Translating Embeddings for Modeling Multi-relational data&quot;&gt;&lt;/a&gt;&lt;em&gt;Translating Embeddings for Modeling Multi-relational data&lt;/em&gt;&lt;/h2&gt;&lt;h3 id=&quot;一-解决的问题&quot;&gt;&lt;a href=&quot;#一-解决的问题&quot; class=&quot;headerlink&quot; title=&quot;一.解决的问题&quot;&gt;&lt;/a&gt;一.解决的问题&lt;/h3&gt;&lt;p&gt;对多元关系数据进行建模，是知识图谱方向的主要任务。可为下游任务（e.g.,社交网络分析与挖掘，推荐系统，基于知识的问答系统）提供支撑。我们的直接目的是得到知识库中所有实体(entity)和关系(relationship)在低维空间的embedding。&lt;/p&gt;
     
     </summary>
     
@@ -79,17 +91,11 @@
     <link href="http://yoursite.com/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/"/>
     <id>http://yoursite.com/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/</id>
     <published>2020-07-05T08:47:41.000Z</published>
-    <updated>2020-07-05T08:51:22.547Z</updated>
+    <updated>2020-07-10T07:53:31.924Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks&quot;&gt;&lt;a
-        
-      
+      &lt;h2 id=&quot;SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks&quot;&gt;&lt;a href=&quot;#SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks&quot; class=&quot;headerlink&quot; title=&quot;SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks&quot;&gt;&lt;/a&gt;&lt;em&gt;SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks&lt;/em&gt;&lt;/h2&gt;&lt;h3 id=&quot;一-解决的问题&quot;&gt;&lt;a href=&quot;#一-解决的问题&quot; class=&quot;headerlink&quot; title=&quot;一.解决的问题&quot;&gt;&lt;/a&gt;一.解决的问题&lt;/h3&gt;&lt;p&gt;实体链接 (Entity Linking)任务，根本目标是为了把非结构化的文本里的mention（非结构化的自然文本中表达实体的语句片段）映射到结构化或半结构化的Knowledge Base(知识库)或Knowledge Graph(知识图谱)的entity中去。本文要解决的实体链接更困难一些，因为本文要将mention映射到相对更复杂的异构信息网络(Heterogeneous Information Network)中去。&lt;/p&gt;
     
     </summary>
     
@@ -108,17 +114,11 @@
     <link href="http://yoursite.com/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/"/>
     <id>http://yoursite.com/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/</id>
     <published>2020-07-05T08:44:40.000Z</published>
-    <updated>2020-07-10T07:48:45.238Z</updated>
+    <updated>2020-07-10T07:53:14.557Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking&quot;&gt;&lt;a href=&quot;#An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking&quot;
-        
-      
+      &lt;h2 id=&quot;An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking&quot;&gt;&lt;a href=&quot;#An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking&quot; class=&quot;headerlink&quot; title=&quot;An Attention Factor Graph Model for Tweet Entity Linking&quot;&gt;&lt;/a&gt;&lt;em&gt;An Attention Factor Graph Model for Tweet Entity Linking&lt;/em&gt;&lt;/h2&gt;&lt;h3 id=&quot;一-解决的问题&quot;&gt;&lt;a href=&quot;#一-解决的问题&quot; class=&quot;headerlink&quot; title=&quot;一.解决的问题&quot;&gt;&lt;/a&gt;一.解决的问题&lt;/h3&gt;&lt;p&gt;依然是实体链接问题，但是本文解决的是在twitter上的实体链接，由于推文内容的长度限制、表达较为口语化、有较多缩写等特点，比传统的实体链接要困难。但是，由于不同用户的推文之间会有主题连贯性等特点，对推特上的推文进行实体链接又有新的可以挖掘利用的地方。&lt;/p&gt;
     
     </summary>
     

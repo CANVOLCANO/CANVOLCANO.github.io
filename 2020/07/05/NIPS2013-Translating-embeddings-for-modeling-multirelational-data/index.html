@@ -98,7 +98,7 @@
 
       
       <h2 id="Translating-Embeddings-for-Modeling-Multi-relational-data"><a href="#Translating-Embeddings-for-Modeling-Multi-relational-data" class="headerlink" title="Translating Embeddings for Modeling Multi-relational data"></a><em>Translating Embeddings for Modeling Multi-relational data</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>对多元关系数据进行建模，是知识图谱方向的主要任务。可为下游任务（e.g.,社交网络分析与挖掘，推荐系统，基于知识的问答系统）提供支撑。我们的直接目的是得到知识库中所有实体(entity)和关系(relationship)在低维空间的embedding。</p>
-<!-- monre -->
+<a id="more"></a>
 <h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><p>受word2vec启发，在知识图谱的向量化过程中，对于每个triplet$(h,l,t)$，head的向量化表示$\boldsymbol{h}$+realition的向量化表示$\boldsymbol{l}$ 应该在低维embedding空间中尽可能靠近tail的向量化表示$\boldsymbol{t}$。即</p>
 <script type="math/tex; mode=display">
 \boldsymbol{h}+\boldsymbol{l}\approx \boldsymbol{t}</script><h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>对于同一个triplet里的head和tail，他们的距离应该尽可能靠近。同样的，对于错误的triplet（文中称之为corrupted triplet，这里是我们将一个正确的triplet的head或tail随机替换为另一个实体来人为伪造的），我们应该尽可能使他们的距离尽可能的远，由此我们可以定义如下损失函数：</p>

@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    NAACL2016-Hierarchical Attention Networks for Document Classification |  Canzhe&#39;s Blog
+    node2vec Scalable Feature Learning for Networks |  Canzhe&#39;s Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification" class="article article-type-post" itemscope
+  <article id="post-node2vec-Scalable-Feature-Learning-for-Networks" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  NAACL2016-Hierarchical Attention Networks for Document Classification
+  node2vec Scalable Feature Learning for Networks
 </h1>
  
 
@@ -48,8 +48,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/" class="article-date">
-  <time datetime="2020-07-05T08:50:06.000Z" itemprop="datePublished">2020-07-05</time>
+      <a href="/2020/07/10/node2vec-Scalable-Feature-Learning-for-Networks/" class="article-date">
+  <time datetime="2020-07-10T07:54:45.000Z" itemprop="datePublished">2020-07-10</time>
 </a>
       
   <div class="article-category">
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.3k字</span>
+            <span class="post-count">1.9k字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5分钟</span>
+            <span class="post-count">6分钟</span>
         </span>
     </span>
 </div>
@@ -97,53 +97,70 @@
       
 
       
-      <h2 id="Hierarchical-Attention-Networks-for-Document-Classification"><a href="#Hierarchical-Attention-Networks-for-Document-Classification" class="headerlink" title="Hierarchical Attention Networks for Document Classification"></a><em>Hierarchical Attention Networks for Document Classification</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>本文解决的问题是通过doc2vec的建模，来实现文本分类问题。下游任务有很多，例如情感分类、垃圾邮件识别等。</p>
-<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><a id="more"></a>
-<p>这篇文章的motivation主要有两个：</p>
+      <h2 id="node2vec-Scalable-Feature-Learning-for-Networks"><a href="#node2vec-Scalable-Feature-Learning-for-Networks" class="headerlink" title="node2vec Scalable Feature Learning for Networks"></a><em>node2vec Scalable Feature Learning for Networks</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>网络表示学习（Network Representation Learning）或网络嵌入（Network Embedding）或图嵌入（Graph Embedding）。直接目标是得到给定图的每个节点在低维空间的embedding，可以为链接预测、节点分类、可视化等下游任务提供支撑。</p>
+<a id="more"></a>
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><p>本文其实是对DeepWalk工作的延申，同样是基于随机游走策略产生序列将网络序列化，不同的是本文进一步提出了两种启发式的随机游走策略，且将这两种策略灵活的结合在了一起，能够针对不同结构的网络产生不同的随机游走序列。</p>
+<h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><p>本文的动机有两个，都是从产生随机游走序列的方式出发：</p>
 <ul>
-<li>将文本看作是层次化的结构。逐层提取word-&gt;sentence和sentence-&gt;document的特征，最后得到整个document的全局特征。</li>
-<li>引入attention机制，并在提取word-&gt;sentence和sentence-&gt;document都应用attention机制。</li>
+<li>随机游走应该可以产生能够保存当前节点为中心的 local neighborhood 的序列，即保存网络的<strong>homophily</strong>，称之为 <strong>Breadth-first Sampling (BFS)</strong>，例如$u-&gt;s_1-&gt;s_2-&gt;s_3$。</li>
+<li>随机游走序列也应该产生能够保存可能距离当前节点较远但是和当前节点所处的 local neighborhood 的结构较为相似的节点，即保存网络的<strong>structural equivalence</strong>，称之为<strong>Depth-first Sampling (DFS)</strong>，例如$u-&gt;s_4-&gt;s_5-&gt;s_6$。</li>
 </ul>
-<h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>基于GRU在几乎所有情况下与LSTM性能接近但GRU因为控制门的数量更少因而计算成本更低更容易训练，这篇文章选择了GRU在word encoder和sentence encoder中提取hidden state。</p>
-<p>在时序$t$，GRU的reset gate的状态为：</p>
+<p><img src="https://i.loli.net/2020/06/23/2CHbKueDrUq4a9F.png" alt="image-20200623212635420"></p>
+<h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>现在无论我们采取了上述哪种随机游走策略，类似于word2vec中的skip-gram，我们把产生的随机游走序列看作一个句子，把当前出发的节点$u$看作是中心词，把当前随机游走序列上的其他节点看作是节点$u$的上下文，我们希望最大化给定节点$u$的上下文节点出现的概率，即：</p>
 <script type="math/tex; mode=display">
-r_t=\sigma(W_rx_t+U_rh_{h-1}+b_r), \tag{1}</script><p>其candidate state为：</p>
-<script type="math/tex; mode=display">
-\tilde{h}_t={\rm{tanh} }(W_hx_t+r_t\odot(U_hh_{t-1})+b_h),\tag{2}</script><p>GRU的update gate $z_t$的状态类似于reset gate：</p>
-<script type="math/tex; mode=display">
-z_t=\sigma(W_zx_t+U_zh_{t-1}+b_z),\tag{3}</script><p>最后，得到GRU在时序$t$的hidden state $h_t$:</p>
-<script type="math/tex; mode=display">
-h_t=(1-z_t)\odot h_{t-1}+z_t\odot \tilde{h}_t .\tag{4}</script><p>以下记号中，假设文档有$L$个sentences，每个sentence包含$T_i$个words，$w_{it},t\in[1,T]$表示第$i$个sentence里的第$t$个词。</p>
-<!-- 首先是**word encoder**。文中使用了word2vec模型在当前数据集的语料上训练得出当前数据集的word embedding，并使用word embedding来初始化$W_e$。word encoder的过程为：-->
-<p>这里$\mathop{\rm GRU}\limits^{\longrightarrow}(),\mathop{\rm GRU}\limits^{\longleftarrow}()$分别表示从左至右和从右至左的GRU。对于文中当前词$w_{it}$，我们将它的双向GRU的状态拼接得到$h_{it}=[{\mathop{h}\limits^{\rightarrow} }_{it},{\mathop{h}\limits^{\leftarrow} }_{it}]$，当前词的$h_{it}$除了包含当前词的信息，还包含了当前词的上下文的信息。</p>
-<p>其次是<strong>word attention</strong>。我们引入attention 机制为每个词的$h_{it}$分配不同的权重，最终加权得到一个sentence的初始向量表示$s_i$。具体的：</p>
-<script type="math/tex; mode=display">
-u_{it}={\rm tanh}(W_wh_{it}+b_w) \tag{5}\\</script><script type="math/tex; mode=display">
-\alpha_{it}=\frac{ {\rm exp}(u^T_{it}u_w)}{\sum_t{\rm exp}(u^T_{it}u_w)} \tag{6}\\</script><script type="math/tex; mode=display">
-s_i=\sum\limits_{t}\alpha_{it}h_{it} .\tag{7}</script><p>在此，式$(5)$中使用了一层的MLP来得到$u_{it}$。向量$u_w$是特定于某个sentence的词级别的语义向量(word level context vector)，它的作用是和每个词的$u_{it}$计算再通过softmax function来分配attention的权重，$u_w$的初始化是随机的并且在训练中参与学习过程。</p>
-<p><strong>sentence encoder</strong>和<strong>sentence attention</strong>的过程同上述<strong>word encoder</strong>和<strong>word attention</strong>是完全类似的，这里不再赘述。</p>
-<p>最后我们得到整个文档的表征向量$v$，分类函数则可以简单的设计为</p>
-<script type="math/tex; mode=display">
-p={\rm softmax}(W_cv+b). \tag{11}</script><p>考虑所有的文档，我们采用负对数似然函数作为整体的loss：</p>
-<script type="math/tex; mode=display">
-L=-\mathop{\sum}\limits_d {\rm log}\ p_{dj}. \tag{12}</script><p>优化的直接目标是，使每个文档正确分类的概率尽可能大。</p>
-<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><h4 id="1-实验结果"><a href="#1-实验结果" class="headerlink" title="1.实验结果"></a>1.实验结果</h4><p><strong>a.</strong>超参设置：文章中有详尽的描述，这里不再赘述。</p>
-<p><strong>b.</strong>模型类别：对此篇文章中提出的模型，实验分别对<strong>HN-{AVE,MAX,ATT}</strong>进行了测试。其中AVE指每层平均来得到上一层，MAX指每层取最大来得到上一层，ATT即本文在每层引入的attention机制。</p>
-<p><strong>c.</strong>同之前SOTA的对比：HN-ATT模型在所有数据集上均超过了其他所有模型。</p>
-<p><img src="https://i.loli.net/2020/06/21/twKSpDx6JuhvgBi.png" alt="image-20200621212527372"></p>
-<p><strong>d.</strong>对于模型性能的提升，作者给出的解释是某些词的重要性是同语义相关的。比如在“好”的评论和“坏”的评论中，都可能会出现”good”，但是在“坏”的评论里，通常是以”not good”的形式出现。这里作者给出了在数据集 Yelp 2013 上，从一星到五星评论中，”good”和”bad”的attention权重。可以看到，”good”的权重是随着评级的上升呈上升趋势，而”bad”则相反。</p>
-<p><img src="https://i.loli.net/2020/06/21/mni8sfcADSL2PgR.png" alt="image-20200621214411213"></p>
-<p><img src="https://i.loli.net/2020/06/21/ndNW4kzU7Xb3lE2.png" alt="image-20200621214358468"></p>
-<p><strong>e.</strong>可视化：作者同样给出了在 Yelp 2013 数据集和 Yahoo Answers 数据集上的可视化。可以看到，模型成功的在具有较为强烈语义的词上给予了较多的attention权重，并且对某些看似会对整体classification产生影响的句子以低的attention权重以进行一定程度的忽略。</p>
-<p><img src="https://i.loli.net/2020/06/21/958FipVJmqdMg1s.png" alt="image-20200621214850835"></p>
-<h4 id="2-模型分析"><a href="#2-模型分析" class="headerlink" title="2.模型分析"></a>2.模型分析</h4><ul>
-<li>一些方法例如，CNN-word、CNN-char、LSTM，尽管使用了神经网络但是没有将文档层次化建模，性能并没有超过传统的线性分类和基于SVM分类的方法太多。</li>
-<li>引入文档的层次化建模后，单纯的HN-MAX、HN-AVG都显著超越了CNN-word、LSTM等模型。</li>
-<li>同时考虑层次化文档建模和attention机制，模型的性能又可以超越单纯的层次化模型LSTM-GRNN。</li>
-<li>以上分析表明，本文提出的层次化建模和在每个层引入attention机制都可以提升模型的性能并且这两种方法是互补的，同时使用效果更为显著。</li>
+\max\limits_f \ \sum\limits_{u\in V}{\rm log}\ Pr(N_S(u)|f(u)). \tag{1}</script><p>为了方便处理，这里我们给出两个假设：</p>
+<ul>
+<li>出发节点$u$产生的随机序列的上下文节点是概率无关的，则：</li>
 </ul>
-<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ul>
-<li>本文提出了层次化的结构对文档建模，同时引入了attention机制，在第一层学习比较重要的词来构建句子的表征，在第二层又学习比较重要的句子来构建整个文档的表征，最后再结合一个简单的分类器便达到了SOTA。在兼顾性能的同时，又在一定程度上保证了模型的可解释性。</li>
+<script type="math/tex; mode=display">
+Pr(N_S(u)|f(u))=\prod \limits_{n_i\in N_S(u)}\ Pr(n_i|f(u)).</script><ul>
+<li>特征空间对称性，不同的源节点的特征空间是一样的，我们就可以采取每个节点对称的方式进行概率建模。这里我们采用类似softmax的方式进行概率建模:</li>
+</ul>
+<script type="math/tex; mode=display">
+Pr(n_i|f(u))=\frac{ {\rm exp}(f(n_i) \cdot f(u))}{\sum_{v\in V}{\rm exp}(f(v)\cdot f(u))}.</script><p>综合上述两个假设，式$(1)$等价于：</p>
+<script type="math/tex; mode=display">
+\max\limits_f \ \sum\limits_{u\in V}\ [-{\rm log}\ Z_u+\sum\limits_{n_i\in N_S(u)}f(n_i)\cdot f(u)]. \tag{2}</script><p>我们再来考虑如何产生上述两种方式的随机游走序列并将两种方式结合。</p>
+<p>假设随机游走序列上的每个节点为$c_i$，从节点$u$出发，当前在节点$v$，下一个节点是$x$，则由$v$游走到$x$的转移概率为：</p>
+<script type="math/tex; mode=display">
+P(c_i=x|c_{i-1}=v)=
+\left\{
+\begin{aligned}
+& \frac{\pi_{vx} }{Z}\quad {\rm if}\ (v,x)\in E \\
+& 0\quad\quad {\rm otherwise} 
+\end{aligned}
+\right.</script><p>其中，$Z$是正则化系数。$\pi_{vx}=\alpha_{pq}(t,x)\cdot w_{vx}$,$w_{vx}$是边(v,x)的权重，$\alpha_{pq}(t,x)$为：</p>
+<script type="math/tex; mode=display">
+\alpha_{pq}(t,x)=
+\left\{
+\begin{aligned}
+& \frac{1}{p} &{\rm if}\ d_{tx}=0 \\
+& 1 &{\rm if}\ d_{tx}=1 \\
+& \frac{1}{q}& {\rm if}\ d_{tx}=2
+\end{aligned}
+\right.</script><p>$\alpha_{pq}(t,x)$是我们根据当前节点$v$的上一个节点$t$到$v$的下一个节点$x$的最短路长度预先确定的。超参数$p$和$q$则分别反映了我们进行随机游走时BFS和DFS的程度。</p>
+<p>此外，在实现的时候，还有一个trick。由于对随机游走建模的马尔可夫性，这里假设我们一次随机游走的长度为$l$，对一个节点采样的上下文序列（不包括当前节点自身）长度为$k$，那么我们进行一次随机游走就得到了$l-k(l\gt k)$个采样，来加速我们的采样效率。当然，这样做会造成一些统计偏差，但是总体上还是提高了效率。</p>
+<p>特殊的，在某些下游任务中，需要同时两个节点的embedding来进行处理。比如，在链接预测任务中，对于给定的两个节点我们需要判断当前的两个节点是否存在一条link。我们就需要考虑一些同时处理两个节点的二元运算符。本文中，作者对如下二元运算符进行了实验：</p>
+<p><img src="https://i.loli.net/2020/06/23/PC9NZBWVpIgXcsF.png" alt="image-20200623230043214"></p>
+<p>整体的算法流程如下：</p>
+<p><img src="https://i.loli.net/2020/06/23/MdYSQoBNVcw8HiK.png" alt="image-20200623230136593"></p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><h4 id="1-实验结果"><a href="#1-实验结果" class="headerlink" title="1.实验结果"></a>1.实验结果</h4><p><strong>a.</strong>首先是一个简单的可视化。作者在一个比较小的网络上进行了实验，并分别调整了$p$和$q$，分别侧重于BFS和DFS，对节点embedding并聚类的结果如下：</p>
+<p><img src="https://i.loli.net/2020/06/23/4DXSx6ECMujvqhR.png" alt="image-20200623230540378"></p>
+<p>可以看到，模型学习到的节点的表征比较好的保存了网络的不同的结构。</p>
+<p><strong>b.</strong>多标签多分类实验。作者在 BlogCatalog、Protein-Protein Interactions、Wikipedia三个数据集上分别进行了实验。需要注意的是，这些数据集对保存图的结构提出了不同的要求，如果要在测试集上达到好的效果，有的数据集侧重于保存<strong>homophily</strong>，有的则侧重于保存<strong>structural equivalence</strong>。此外，作者还对训练集占比较小的情况下对算法进行了性能检验。</p>
+<p><img src="https://i.loli.net/2020/06/23/DUZrcViOCq7kwoW.png" alt="image-20200623233408566"></p>
+<p><img src="https://i.loli.net/2020/06/23/ZQcruaPWwzUVNf3.png" alt="image-20200623233238842"></p>
+<p>可以看到，该模型较以往的方法都有显著提升。</p>
+<p><strong>c.</strong>参数敏感性和扰动分析。作者对$d,r,l,k$等参数进行了敏感性分析。此外，作者还随机去掉了数据集中的某些节点间的边，人为制造了噪声，来衡量该模型的鲁棒性。</p>
+<p><img src="https://i.loli.net/2020/06/23/91UgvyXjInDbO7B.png" alt="image-20200623234343419"></p>
+<p><strong>d.</strong>模型的可扩展性。从实验结果上看，该模型较为高效，在很大的数据集上开销也是可以接受的。</p>
+<p><img src="https://i.loli.net/2020/06/23/ChoY3QjUM9g4AdE.png" alt="image-20200623235300249"></p>
+<h4 id="2-模型分析"><a href="#2-模型分析" class="headerlink" title="2.模型分析"></a>2.模型分析</h4><p>作者将该模型优越的性能归结为其可以在BFS和DFS间较为灵活的调整，以适应不同的数据集和任务，相当于在 exploration-exploitation之间做到了比较好的trade-off。</p>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><h4 id="1-优点"><a href="#1-优点" class="headerlink" title="1.优点"></a>1.优点</h4><ul>
+<li>DeepWalk方法通过随机游走的方式，将图结构转化为了序列的结构，然后引入NLP中的skip-gram来处理，一定程度上保留了节点间的关系。但是，实际中图的边权也是图的重要性质之一，本文在节点间的转移概率上引入边权的同时又同时考虑了BFS和DFS两种策略，根据不同的数据集可以通过超参数的方式灵活的在embedding中保留图的不同结构的性质，达到了优异的性能。</li>
+<li>区别于以往的基于矩阵分解的方法，本文提出的模型具有较高的效率，可以方便的扩展到贴近实际生活中的大规模的数据集，具有较高的实际应用价值。</li>
+</ul>
+<h4 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2.缺点"></a>2.缺点</h4><ul>
+<li>本文的模型的BFS策略可以较好的保存局部邻域的节点的相似性，但是即使引入了DFS，受限于其随机游走的序列的长度，在图非常大这样的极端情况下，相距较远但又具有一定程度的相似性的节点，使用本文的模型可能依然无法较好的使其在embedding空间比较接近、仍然无法很好的保留图的结构。</li>
 </ul>
 
       
@@ -199,7 +216,7 @@ L=-\mathop{\sum}\limits_d {\rm log}\ p_{dj}. \tag{12}</script><p>优化的直接
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/10/node2vec-Scalable-Feature-Learning-for-Networks/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -217,19 +234,10 @@ L=-\mathop{\sum}\limits_d {\rm log}\ p_{dj}. \tag{12}</script><p>优化的直接
   
   <nav class="article-nav">
     
-      <a href="/2020/07/10/node2vec-Scalable-Feature-Learning-for-Networks/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            node2vec Scalable Feature Learning for Networks
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/" class="article-nav-link">
+      <a href="/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">NIPS2013-Translating embeddings for modeling multirelational data</div>
+        <div class="article-nav-title">NAACL2016-Hierarchical Attention Networks for Document Classification</div>
       </a>
     
   </nav>

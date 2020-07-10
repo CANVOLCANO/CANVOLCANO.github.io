@@ -98,7 +98,7 @@
 
       
       <h2 id="An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking"><a href="#An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking" class="headerlink" title="An Attention Factor Graph Model for Tweet Entity Linking"></a><em>An Attention Factor Graph Model for Tweet Entity Linking</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>依然是实体链接问题，但是本文解决的是在twitter上的实体链接，由于推文内容的长度限制、表达较为口语化、有较多缩写等特点，比传统的实体链接要困难。但是，由于不同用户的推文之间会有主题连贯性等特点，对推特上的推文进行实体链接又有新的可以挖掘利用的地方。</p>
-<!-- monre -->
+<a id="more"></a>
 <h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><ul>
 <li>将实体看作是因子图模型(factor graph model)的variable node，然后应用Belief Propagation来求边缘分布，再结合反向传播迭代参数$\Theta$的值。</li>
 <li>计算两个variable node之间的topical coherence，并在此基础上引入节点的间的注意力机制。大幅提升模型训练和推理时的速度的同时，还提高了模型的性能。</li>

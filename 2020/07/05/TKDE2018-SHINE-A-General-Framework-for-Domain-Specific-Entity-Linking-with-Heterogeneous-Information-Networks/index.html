@@ -98,7 +98,7 @@
 
       
       <h2 id="SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks"><a href="#SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks" class="headerlink" title="SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks"></a><em>SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>实体链接 (Entity Linking)任务，根本目标是为了把非结构化的文本里的mention（非结构化的自然文本中表达实体的语句片段）映射到结构化或半结构化的Knowledge Base(知识库)或Knowledge Graph(知识图谱)的entity中去。本文要解决的实体链接更困难一些，因为本文要将mention映射到相对更复杂的异构信息网络(Heterogeneous Information Network)中去。</p>
-<!-- monre -->
+<a id="more"></a>
 <h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><ul>
 <li>提出了一个probabilistic linking model来同时考虑 entity popularity model 和 entity<br>object model 。前者融合PageRank算法衡量一个实体在HIN中的流行度，后者给出了计算在给定某个实体$e$下关联某个文档$d$的似然概率$\textbf{P}(d|e)$。</li>
 <li>提出了knowledge population algorithm来动态的将上一步实体链接过程中具有较高置信度的mention的上下文信息补充到HIN中，以期到达丰富HIN中的knowledge的目的。</li>
