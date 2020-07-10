@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-10T07:55:41.443Z</updated>
+  <updated>2020-07-10T15:50:24.377Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CodeForces - 611C:New Year and Domino</title>
+    <link href="http://yoursite.com/2020/07/10/CodeForces-611C-New-Year-and-Domino/"/>
+    <id>http://yoursite.com/2020/07/10/CodeForces-611C-New-Year-and-Domino/</id>
+    <published>2020-07-10T15:47:11.000Z</published>
+    <updated>2020-07-10T15:50:24.377Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;思路：大概的思路是，&lt;del&gt;今天事情太多，有点困，先睡了&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CodeForces - 706C:Hard problem</title>
+    <link href="http://yoursite.com/2020/07/10/CodeForces-706C-Hard-problem/"/>
+    <id>http://yoursite.com/2020/07/10/CodeForces-706C-Hard-problem/</id>
+    <published>2020-07-10T12:19:42.000Z</published>
+    <updated>2020-07-10T12:28:17.712Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;思路：从左至右一维DP即可，每次状态的转换都有4种情况（上一个串的正序逆序$\times$当前串的正序逆序）。需要注意的是，存在当前串的某个序是上一个串的某个序的真前缀（strlen(当前串)&lt;strlen(上一个串)&amp;&amp;当前串的某个序是上一个串的某个序的前缀,e.g.,&lt;aaa,aa&gt;,&lt;abc,ab&gt;）的情况，特判即可。（&lt;del&gt;好久没写题了，手钝的不行，一道水题磨叽了半个下午&lt;/del&gt;）&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/categories/ACM/"/>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/tags/ACM/"/>
+    
+      <category term="CodeForces" scheme="http://yoursite.com/tags/CodeForces/"/>
+    
+  </entry>
   
   <entry>
     <title>node2vec Scalable Feature Learning for Networks</title>
