@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    SummerProject 06 13 |  Canzhe&#39;s Blog
+    TKDE2018-SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks |  Canzhe&#39;s Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-SummerProject-06-13" class="article article-type-post" itemscope
+  <article id="post-TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SummerProject 06 13
+  TKDE2018-SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks
 </h1>
  
 
@@ -48,12 +48,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/06/13/SummerProject-06-13/" class="article-date">
-  <time datetime="2020-06-13T15:25:25.000Z" itemprop="datePublished">2020-06-13</time>
+      <a href="/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/" class="article-date">
+  <time datetime="2020-07-05T08:47:41.000Z" itemprop="datePublished">2020-07-05</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/SummerProject/">SummerProject</a>
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
   </div>
 
       
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">127字</span>
+            <span class="post-count">2.2k字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">9分钟</span>
         </span>
     </span>
 </div>
@@ -97,14 +97,87 @@
       
 
       
-      <h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
-<li>帮后端解决了一些BUG，后端因为是MAC，没有办法跑我在GPU上训练出来的模型，所有有关模型和后端的整合我做完后在自己的机器上进行了测试。</li>
-<li>PR时出了点问题，在健洲的帮助下新建了分支再次进行了提交后就把问题解决。</li>
-</ol>
-<h2 id="明天要做什么"><a href="#明天要做什么" class="headerlink" title="明天要做什么"></a>明天要做什么</h2><ol>
-<li>帮助他们整合前端和后端。</li>
-<li>尝试新的模型，时间有些紧张。</li>
-</ol>
+      <h2 id="SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks"><a href="#SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks" class="headerlink" title="SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks"></a><em>SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>实体链接 (Entity Linking)任务，根本目标是为了把非结构化的文本里的mention（非结构化的自然文本中表达实体的语句片段）映射到结构化或半结构化的Knowledge Base(知识库)或Knowledge Graph(知识图谱)的entity中去。本文要解决的实体链接更困难一些，因为本文要将mention映射到相对更复杂的异构信息网络(Heterogeneous Information Network)中去。</p>
+<!-- monre -->
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><ul>
+<li>提出了一个probabilistic linking model来同时考虑 entity popularity model 和 entity<br>object model 。前者融合PageRank算法衡量一个实体在HIN中的流行度，后者给出了计算在给定某个实体$e$下关联某个文档$d$的似然概率$\textbf{P}(d|e)$。</li>
+<li>提出了knowledge population algorithm来动态的将上一步实体链接过程中具有较高置信度的mention的上下文信息补充到HIN中，以期到达丰富HIN中的knowledge的目的。</li>
+</ul>
+<h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>实体链接的直接目的是，在给定文档$d$及其中某个mention $m$的情况下，映射到HIN的某个实体$e$。即:</p>
+<script type="math/tex; mode=display">
+\arg \max\limits_{e\in E}\ \textbf{P}(e|m,d),\tag{1}</script><p>等价于:</p>
+<script type="math/tex; mode=display">
+\arg \max\limits_{e\in E}\ \textbf{P}(e|m,d)=\arg \max\limits_{e\in E}\ \frac{\textbf{P}(m,d,e)}{\textbf{P}(m,d)}=\arg \max\limits_{e\in E}\ \textbf{P}(m,d,e). \tag{2}</script><p>假设在给定$e$下，$d$和$m$的分布是独立的，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(m,d,e)=\textbf{P}(e)\textbf{P}(m|e)\textbf{P}(d|e). \tag{3}</script><p>进一步的，我们假设对于候选实体集中的去关联mention的时候，分布是固定的，即$\textbf{P}(m|e)$是一个常数，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(m,d,e)=\eta \cdot\textbf{P}(e)\textbf{P}(d|e), \tag{4}</script><p><strong>The Entity Popularity Model.</strong>在此我们首先解决$\textbf{P}(e)$。类似于PageRank算法，我们可以认为，一个同越多实体相关联的实体，它的流行度(popularity)是越高的，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(e)=\frac{pr(e)}{\sum_{e'\in E}pr(e')}.\tag{5}</script><p>其中，$pr(e)$是一个实体的PageRank分数。注意，这里我们把HIN做了简化，把HIN中不同type的实体都看作同一种，方便我们计算$pr(e)$。</p>
+<p><strong>The Entity Object Model.</strong>然后我们解决$\textbf{P}(d|e)$。这里我们参考统计自然语言处理中的N-Gram模型，把一个文档看作是一个”sentence”，把文档中的mention看作是各种不同的”word”，考虑unigram模型，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(d|e)=\prod\limits_{v\in d}\textbf{P}(v|e).\tag{6}</script><p>但是这样会产生一个问题，在某些情况下，某个$v$会导致$\textbf{P}(v|e)=0$，从而使$\textbf{P}(d|e)=0$。我们进一步改进式$(6)$：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(d|e)=\prod\limits_{v\in d}(\theta\cdot\textbf{P}_e(v)+(1-\theta)\cdot\textbf{P}_g(v)), \tag{7}</script><p>其中，$\theta\in(0,1)$，$\textbf{P}_e(v)$可以通过预先给定meta-path（元路径）来计算，$\textbf{P}_g(v)$是与$e$无关的、可以直接从文档集合中估计的。在异构信息网络中，实体有多种类型，实体间的关系也有多种类型，我们定义元路径为:$p=R_1-R_2-\cdot\cdot\cdot-R_l$，其中$R_k$表示实体和实体间的二元关系，具体的，如果实体$v$和实体$v’$之间存在关系$R_k$，则$R_k(v’,v)=1$，否则$R_k(v’,v)=0$。同时，我们定义$R_k(v’)=\{v|R_k(v’,v)\}$，即所有跟实体$v’$间存在关系$R_k$的实体的集合。进一步的，$\textbf{P}_e(v|p)$表示从实体$e$出发经路径$p$到达实体$v$的概率。特殊的，当$p$是空路径时，定义如下:</p>
+<script type="math/tex; mode=display">
+\textbf{P}_e(v|p)=
+\left\{
+\begin{aligned}
+& 1 \quad{\rm if \ object}\ v \ {\rm is \ entity} \ e,\\
+& 0 \quad{\rm otherwise}. 
+\end{aligned}
+\right.
+\tag{8}</script><p>如果$p$不为空路径，记$p’=R_1-R_2-\cdot\cdot\cdot-R_{l-1}$则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}_e(v|p)=\sum\limits_{v'\in V}\textbf{P}_e(v'|p')\cdot\frac{R_l(v',v)}{|R_l(v')|},\tag{9}</script><p>直观上理解，所有从实体$e$出发经路径$p$到实体$v$的上一个前驱节点$v’$的$\textbf{P}_e(v’|p’)$的加权平均即为$\textbf{P}_e(v|p)$。实际中，应该存在不同的路径$p$可以从实体$e$到达实体$v$，我们把它们加权可以得到:</p>
+<script type="math/tex; mode=display">
+\textbf{P}_e(v)=\sum\limits_p\ w_p\textbf{P}_e(v|p),\tag{10}</script><p>其中,$w_p$是不同路径的权重，也可以看作是不同路径的先验概率。这里我们不考虑$w_p=0$的情况，并且保证$\sum_p\ w_p=1$。这里所使用的所有路径可以是我们手工给定的，也可以是基于BFS或DFS等搜索算法得到的。至于路径的权重的确定则是一个优化问题：</p>
+<script type="math/tex; mode=display">
+\arg\max\limits_{w_p}\prod\limits_{(m,d)}\textbf{P}(m,d).\tag{11}</script><p>这里</p>
+<script type="math/tex; mode=display">
+\textbf{P}(m,d)=\sum\limits_{e\in E}\textbf{P}(m,d,e),\tag{12}</script><p>联合式$(4)$，得到</p>
+<script type="math/tex; mode=display">
+\arg\max\limits_{w_p} \prod\limits_{(m,d)}\sum\limits_e\eta\cdot\textbf{P}(e)\textbf{P}(d|e)=\arg\max\limits_{w_p} \prod\limits_{(m,d)}\sum\limits_e\textbf{P}(e)\textbf{P}(d|e).\tag{13}</script><p>为了方便优化，我们考虑引入隐变量$\pi$并使用EM算法求解：</p>
+<script type="math/tex; mode=display">
+\pi(m,d,e)=
+\left\{
+\begin{aligned}
+& 1 \quad{\rm if \ mention}\ m \ {\rm in } \ d \ {\rm refers\ to}\ e,\\
+& 0 \quad{\rm otherwise}. 
+\end{aligned}
+\right.
+\tag{14}</script><script type="math/tex; mode=display">
+\arg\max\limits_{w_p}\prod\limits_{(m,d)}\prod\limits_e(\textbf{P}(e)\textbf{P}(d|e))^{\pi(m,d,e)}. \tag{15}</script><p>首先是EM算法中的计算条件概率期望：</p>
+<script type="math/tex; mode=display">
+\textbf{E}(\pi(m,d,e))=\textbf{P}(e|m,d)=\frac{\textbf{P}(m,d,e)}{\textbf{P}(m,d)}=\frac{\textbf{P}(m,d,e)}{\sum_{e'}\textbf{P}(m,d,e')}.\tag{16}</script><p>然后是EM算法的通过调整参$w_p$数最大化期望：</p>
+<script type="math/tex; mode=display">
+\prod\limits_{(m,d),e}(\textbf{P}(e)\textbf{P}(d|e))^{f(m,d,e)}=\prod\limits_{(m,d),e}(\textbf{P}(e))^{f(m,d,e)}\cdot\prod\limits_{(m,d),e}(\textbf{P}(d|e))^{f(m,d,e)}.\tag{17}</script><p>其中，$f(m,d,e)=\textbf{E}(\pi(m,d,e))$。我们可以把式$(17)$的前半部分直接去掉：</p>
+<script type="math/tex; mode=display">
+\prod\limits_{(m,d),e}(\textbf{P}(d|e))^{f(m,d,e)}.\tag{18}</script><p>取对数后得到目标函数:</p>
+<script type="math/tex; mode=display">
+J=\sum\limits_{(m,d),e}f(m,d,e){\rm ln}\ \textbf{P}(d|e).\tag{19}</script><p>考虑式$(7)(10)(19)$，得到：</p>
+<script type="math/tex; mode=display">
+J=\sum\limits_{(m,d),e}f(m,d,e)\sum\limits_v{\rm ln}\ (\theta\cdot\sum\limits_p w_p\textbf{P}_e(v|p)+(1-\theta)\cdot\textbf{P}_g(v)). \tag{20}</script><p>目标函数的优化通过梯度下降完成。</p>
+<p>算法：</p>
+<p><img src="https://i.loli.net/2020/06/25/jVvh8SxCbqngOrH.png" alt="image-20200625205346763"></p>
+<p><strong>THE KNOWLEDGE POPULATION ALGORITHM.</strong>该算法的目的是将某些具有较高置信度的非结构化文本的mention的上下文作为补充信息填充到HIN中，使得HIN中的知识越来越丰富。一个mention映射到一个实体后其正则化后的置信度为：</p>
+<script type="math/tex; mode=display">
+NS(m,d,e)=\frac{\textbf{P}(m,d,e)}{\sum_{e_i\in E_m}\textbf{P}(m,d,e)},\tag{23}</script><p>其中，$E_m$是一个mention对应的候选实体集。这里我们当然是去一个mention所有的映射到的实体中置信度最高的那个：</p>
+<script type="math/tex; mode=display">
+CS(m)=NS(m,d,\arg\max\limits_{e\in E_m}NS(m,d,e)).\tag{24}</script><p>确定映射的实体后，将mention的上下文信息补充到HIN的具体方法这里不再赘述。</p>
+<p>算法：</p>
+<p><img src="https://i.loli.net/2020/06/25/X1RKIYvlk5HpOzM.png" alt="image-20200625210609867"></p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><p><strong>a.</strong>数据集与实验设置。具体的设置这里不再赘述。需要注意的是，准备的自然文本需要和HIN是对应的域，例如，如果HIN是DBLP，则准备的自然文本最好是跟计算机科学相关的语料。</p>
+<p><strong>b.</strong>baseline有POP、VSim、Tradi、SHINE。由实验结果可见，SHINE+性能较baseline较好，而且使用knowledge population algorithm的SHINE+比不使用knowledge population algorithm的SHINE性能更好。此外，使用越多的meta-path，SHINE和SHINE+性能都会越好。</p>
+<p><img src="https://i.loli.net/2020/06/25/w6yKfxz2MvNIZGh.png" alt="image-20200625211419059"></p>
+<p><strong>c.</strong>效率和扩展性分析。实际运行复杂度与entity mention的数量呈线性关系，符合我们的复杂度分析。此外，在不同规模的数据集上性能都较为客观。</p>
+<p><img src="https://i.loli.net/2020/06/25/JRVN7pTOvlS4W3c.png" alt="image-20200625211727571"></p>
+<p><img src="https://i.loli.net/2020/06/25/fz8I4S3LUdlThnq.png" alt="image-20200625211739657"></p>
+<p><strong>d.</strong>参数敏感性分析。具体的实验结果表明，该模型的性能对比较重要的超参数$\theta$和$\gamma$的大小并不是十分敏感，体现了模型的稳定性。</p>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ul>
+<li>实体链接的一个难点便是知识库中可能会有很多名称相同或相近的实体会造成歧义(ambiguity)，本文提出的概率模型可以选出在候选实体集中与mention匹配概率最大的一个实体，并且定义实体和实体间的元路径(meta-path)来辅助匹配，是很有趣的地方。</li>
+<li>另一个novelty是，本文提出的模型在完成实体链接后，对置信度较高的mention的上下文信息可以动态的补充到HIN中，对HIN中的知识进行扩充来方便之后的实体链接，两个过程依次迭代、动态补充，一定程度上提升了模型的性能。</li>
+</ul>
 
       
       <!-- reward -->
@@ -159,14 +232,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/06/13/SummerProject-06-13/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SummerProject/" rel="tag">SummerProject</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
 
     </footer>
@@ -177,19 +250,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/" class="article-nav-link">
+      <a href="/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            WWW2018-An Attention Factor Graph Model for Tweet Entity Linking
+            NIPS2013-Translating embeddings for modeling multirelational data
           
         </div>
       </a>
     
     
-      <a href="/2020/06/11/SummerProject-06-11/" class="article-nav-link">
+      <a href="/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">SummerProject 06 11</div>
+        <div class="article-nav-title">WWW2018-An Attention Factor Graph Model for Tweet Entity Linking</div>
       </a>
     
   </nav>

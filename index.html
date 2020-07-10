@@ -70,6 +70,532 @@
     
     
     
+    <article id="post-NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/"
+    >NAACL2016-Hierarchical Attention Networks for Document Classification</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/" class="article-date">
+  <time datetime="2020-07-05T08:50:06.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="Hierarchical-Attention-Networks-for-Document-Classification"><a href="#Hierarchical-Attention-Networks-for-Document-Classification" class="headerlink" title="Hierarchical Attention Networks for Document Classification"></a><em>Hierarchical Attention Networks for Document Classification</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>本文解决的问题是通过doc2vec的建模，来实现文本分类问题。下游任务有很多，例如情感分类、垃圾邮件识别等。</p>
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><!-- monre -->
+<p>这篇文章的motivation主要有两个：</p>
+<ul>
+<li>将文本看作是层次化的结构。逐层提取word-&gt;sentence和sentence-&gt;document的特征，最后得到整个document的全局特征。</li>
+<li>引入attention机制，并在提取word-&gt;sentence和sentence-&gt;document都应用attention机制。</li>
+</ul>
+<h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>基于GRU在几乎所有情况下与LSTM性能接近但GRU因为控制门的数量更少因而计算成本更低更容易训练，这篇文章选择了GRU在word encoder和sentence encoder中提取hidden state。</p>
+<p>在时序$t$，GRU的reset gate的状态为：</p>
+<script type="math/tex; mode=display">
+r_t=\sigma(W_rx_t+U_rh_{h-1}+b_r), \tag{1}</script><p>其candidate state为：</p>
+<script type="math/tex; mode=display">
+\tilde{h}_t={\rm{tanh} }(W_hx_t+r_t\odot(U_hh_{t-1})+b_h),\tag{2}</script><p>GRU的update gate $z_t$的状态类似于reset gate：</p>
+<script type="math/tex; mode=display">
+z_t=\sigma(W_zx_t+U_zh_{t-1}+b_z),\tag{3}</script><p>最后，得到GRU在时序$t$的hidden state $h_t$:</p>
+<script type="math/tex; mode=display">
+h_t=(1-z_t)\odot h_{t-1}+z_t\odot \tilde{h}_t .\tag{4}</script><p>以下记号中，假设文档有$L$个sentences，每个sentence包含$T_i$个words，$w_{it},t\in[1,T]$表示第$i$个sentence里的第$t$个词。</p>
+<!-- 首先是**word encoder**。文中使用了word2vec模型在当前数据集的语料上训练得出当前数据集的word embedding，并使用word embedding来初始化$W_e$。word encoder的过程为：-->
+<p>这里$\mathop{\rm GRU}\limits^{\longrightarrow}(),\mathop{\rm GRU}\limits^{\longleftarrow}()$分别表示从左至右和从右至左的GRU。对于文中当前词$w_{it}$，我们将它的双向GRU的状态拼接得到$h_{it}=[{\mathop{h}\limits^{\rightarrow} }_{it},{\mathop{h}\limits^{\leftarrow} }_{it}]$，当前词的$h_{it}$除了包含当前词的信息，还包含了当前词的上下文的信息。</p>
+<p>其次是<strong>word attention</strong>。我们引入attention 机制为每个词的$h_{it}$分配不同的权重，最终加权得到一个sentence的初始向量表示$s_i$。具体的：</p>
+<script type="math/tex; mode=display">
+u_{it}={\rm tanh}(W_wh_{it}+b_w) \tag{5}\\</script><script type="math/tex; mode=display">
+\alpha_{it}=\frac{ {\rm exp}(u^T_{it}u_w)}{\sum_t{\rm exp}(u^T_{it}u_w)} \tag{6}\\</script><script type="math/tex; mode=display">
+s_i=\sum\limits_{t}\alpha_{it}h_{it} .\tag{7}</script><p>在此，式$(5)$中使用了一层的MLP来得到$u_{it}$。向量$u_w$是特定于某个sentence的词级别的语义向量(word level context vector)，它的作用是和每个词的$u_{it}$计算再通过softmax function来分配attention的权重，$u_w$的初始化是随机的并且在训练中参与学习过程。</p>
+<p><strong>sentence encoder</strong>和<strong>sentence attention</strong>的过程同上述<strong>word encoder</strong>和<strong>word attention</strong>是完全类似的，这里不再赘述。</p>
+<p>最后我们得到整个文档的表征向量$v$，分类函数则可以简单的设计为</p>
+<script type="math/tex; mode=display">
+p={\rm softmax}(W_cv+b). \tag{11}</script><p>考虑所有的文档，我们采用负对数似然函数作为整体的loss：</p>
+<script type="math/tex; mode=display">
+L=-\mathop{\sum}\limits_d {\rm log}\ p_{dj}. \tag{12}</script><p>优化的直接目标是，使每个文档正确分类的概率尽可能大。</p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><h4 id="1-实验结果"><a href="#1-实验结果" class="headerlink" title="1.实验结果"></a>1.实验结果</h4><p><strong>a.</strong>超参设置：文章中有详尽的描述，这里不再赘述。</p>
+<p><strong>b.</strong>模型类别：对此篇文章中提出的模型，实验分别对<strong>HN-{AVE,MAX,ATT}</strong>进行了测试。其中AVE指每层平均来得到上一层，MAX指每层取最大来得到上一层，ATT即本文在每层引入的attention机制。</p>
+<p><strong>c.</strong>同之前SOTA的对比：HN-ATT模型在所有数据集上均超过了其他所有模型。</p>
+<p><img src="https://i.loli.net/2020/06/21/twKSpDx6JuhvgBi.png" alt="image-20200621212527372"></p>
+<p><strong>d.</strong>对于模型性能的提升，作者给出的解释是某些词的重要性是同语义相关的。比如在“好”的评论和“坏”的评论中，都可能会出现”good”，但是在“坏”的评论里，通常是以”not good”的形式出现。这里作者给出了在数据集 Yelp 2013 上，从一星到五星评论中，”good”和”bad”的attention权重。可以看到，”good”的权重是随着评级的上升呈上升趋势，而”bad”则相反。</p>
+<p><img src="https://i.loli.net/2020/06/21/mni8sfcADSL2PgR.png" alt="image-20200621214411213"></p>
+<p><img src="https://i.loli.net/2020/06/21/ndNW4kzU7Xb3lE2.png" alt="image-20200621214358468"></p>
+<p><strong>e.</strong>可视化：作者同样给出了在 Yelp 2013 数据集和 Yahoo Answers 数据集上的可视化。可以看到，模型成功的在具有较为强烈语义的词上给予了较多的attention权重，并且对某些看似会对整体classification产生影响的句子以低的attention权重以进行一定程度的忽略。</p>
+<p><img src="https://i.loli.net/2020/06/21/958FipVJmqdMg1s.png" alt="image-20200621214850835"></p>
+<h4 id="2-模型分析"><a href="#2-模型分析" class="headerlink" title="2.模型分析"></a>2.模型分析</h4><ul>
+<li>一些方法例如，CNN-word、CNN-char、LSTM，尽管使用了神经网络但是没有将文档层次化建模，性能并没有超过传统的线性分类和基于SVM分类的方法太多。</li>
+<li>引入文档的层次化建模后，单纯的HN-MAX、HN-AVG都显著超越了CNN-word、LSTM等模型。</li>
+<li>同时考虑层次化文档建模和attention机制，模型的性能又可以超越单纯的层次化模型LSTM-GRNN。</li>
+<li>以上分析表明，本文提出的层次化建模和在每个层引入attention机制都可以提升模型的性能并且这两种方法是互补的，同时使用效果更为显著。</li>
+</ul>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ul>
+<li>本文提出了层次化的结构对文档建模，同时引入了attention机制，在第一层学习比较重要的词来构建句子的表征，在第二层又学习比较重要的句子来构建整个文档的表征，最后再结合一个简单的分类器便达到了SOTA。在兼顾性能的同时，又在一定程度上保证了模型的可解释性。</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-NIPS2013-Translating-embeddings-for-modeling-multirelational-data" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/"
+    >NIPS2013-Translating embeddings for modeling multirelational data</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/" class="article-date">
+  <time datetime="2020-07-05T08:49:06.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="Translating-Embeddings-for-Modeling-Multi-relational-data"><a href="#Translating-Embeddings-for-Modeling-Multi-relational-data" class="headerlink" title="Translating Embeddings for Modeling Multi-relational data"></a><em>Translating Embeddings for Modeling Multi-relational data</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>对多元关系数据进行建模，是知识图谱方向的主要任务。可为下游任务（e.g.,社交网络分析与挖掘，推荐系统，基于知识的问答系统）提供支撑。我们的直接目的是得到知识库中所有实体(entity)和关系(relationship)在低维空间的embedding。</p>
+<!-- monre -->
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><p>受word2vec启发，在知识图谱的向量化过程中，对于每个triplet$(h,l,t)$，head的向量化表示$\boldsymbol{h}$+realition的向量化表示$\boldsymbol{l}$ 应该在低维embedding空间中尽可能靠近tail的向量化表示$\boldsymbol{t}$。即</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}+\boldsymbol{l}\approx \boldsymbol{t}</script><h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>对于同一个triplet里的head和tail，他们的距离应该尽可能靠近。同样的，对于错误的triplet（文中称之为corrupted triplet，这里是我们将一个正确的triplet的head或tail随机替换为另一个实体来人为伪造的），我们应该尽可能使他们的距离尽可能的远，由此我们可以定义如下损失函数：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}=\mathop{\sum}\limits_{(h,l,t)\in S}\mathop{\sum}\limits_{(h',l,t')\in S'_{(h,l,t)} }[\gamma+d(\boldsymbol{h+l,t})-d(\boldsymbol{h'+l,t'})]_{+} \tag{1}</script><p>其中，$d(\boldsymbol{h+l,t})$表示$\boldsymbol{h+l}$和$\boldsymbol{t}$的距离，采用 $L_1$或 $L_2$ -norm。$[x]_+$表示$max(0,x)$。$S’_{(h,l,t)}$为我们上文中提及的人为构造的corrupted triplet，即</p>
+<script type="math/tex; mode=display">
+S'_{(h,l,t)}=\{(h',l,t)|h'\in E \}\cup \{(h,l,t')|t'\in E \} \tag{2}</script><p>算法：</p>
+<p><img src="https://i.loli.net/2020/06/21/kUd7E5cJeDRTfil.png" alt="image-20200621093929002"></p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><h4 id="1-实验结果"><a href="#1-实验结果" class="headerlink" title="1.实验结果"></a>1.实验结果</h4><p><strong>a.</strong>评估协议</p>
+<ul>
+<li>mean ranks:以link prediction预测tail为例，每次预测时，正确的tail在预测时的排名平均。该指标越低越好。</li>
+<li>$hits@10$:以link rediction预测tail为例，每次预测时，如果正确的tail排名前10，则指标“$hits@10$”+1。该指标越高越好。</li>
+<li>raw和filtered:以link prediction预测tail为例，在原始的数据集上直接训练，可能会出现，当前triplet的corrupted triplet恰好也是一个training set的sample。这样就会对训练过程造成干扰。为避免这种情况的出现，我们首先对数据集处理，保证所有triplet的corrupted triplet不会出现在训练集、验证集和测试集上，称之为filtered dataset。</li>
+</ul>
+<p><strong>b.</strong>在link prediction任务上的结果</p>
+<ul>
+<li>总体上，在mean rank和$hits@10$指标上，性能均超过了所有的对比方法。</li>
+<li>细节：</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/21/8klMDPKVjbFaNhT.png" alt="image-20200621100525336"></p>
+<ul>
+<li>作者将关系划分为了一对一、一对多、多对一、多对多供4种，在该分类下实验结果如下：</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/21/o7r2Gj5dP1KsERO.png" alt="image-20200621101649950"></p>
+<p><strong>c.</strong>在给定head和label的情况下对tail进行预测的实验结果的部分样例，其中粗体是正确的triplet的tail，斜体是正确的训练集上的其他tail：</p>
+<p><img src="https://i.loli.net/2020/06/21/quFkX8tU6DZSQwa.png" alt="image-20200621102145103"></p>
+<h4 id="2-模型分析"><a href="#2-模型分析" class="headerlink" title="2.模型分析"></a>2.模型分析</h4><ul>
+<li><p>模型性能客观，在大部分情况下都超过了对比模型。</p>
+</li>
+<li><p>相较于SE，模型因为较SE更加简单，所以表达能力可能弱于SE，但是性能却比SE好。作者在此给出的一个可能原因是，TransE相较于SE欠拟合的程度更小。</p>
+</li>
+<li><p>相较于 SME(bilinear) 和 LFM，TransE的性能同样领先。</p>
+</li>
+<li><p>相较于 RESCAL ， RESCAL 在$hits@10$性能客观，但是在mean rank上性能较为落后。</p>
+</li>
+<li><p>最重要的，在同 Unstructured 对比中，凸显了本文作者提出的translation机制的重要性。</p>
+</li>
+</ul>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ol>
+<li><strong>优点</strong>：<ul>
+<li>作者的模型受word2vec启发，提出了一种简洁高效的方法对知识库中的实体和关系进行embedding，性能超过了其他的比较复杂的方法，参数量整体较小，也因此容易扩展到更大的数据集上进行训练。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>但是同样因为模型过于简单，在处理简单的关系（e.g.,一对一的关系）效果显著，在一些复杂的关系（e.g.,多对一、一对多的关系）上不够准确，或者说可能无法捕捉到更深层的语义。比如，对（故宫，位于，北京）和（清华大学，位于，北京）两个triplet进行embedding后，“故宫”和“清华大学”的embedding很大概率会非常相近，但是这两个实体实际上是有较大的语义差别的。</li>
+</ul>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/"
+    >TKDE2018-SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/" class="article-date">
+  <time datetime="2020-07-05T08:47:41.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks"><a href="#SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks" class="headerlink" title="SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks"></a><em>SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>实体链接 (Entity Linking)任务，根本目标是为了把非结构化的文本里的mention（非结构化的自然文本中表达实体的语句片段）映射到结构化或半结构化的Knowledge Base(知识库)或Knowledge Graph(知识图谱)的entity中去。本文要解决的实体链接更困难一些，因为本文要将mention映射到相对更复杂的异构信息网络(Heterogeneous Information Network)中去。</p>
+<!-- monre -->
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><ul>
+<li>提出了一个probabilistic linking model来同时考虑 entity popularity model 和 entity<br>object model 。前者融合PageRank算法衡量一个实体在HIN中的流行度，后者给出了计算在给定某个实体$e$下关联某个文档$d$的似然概率$\textbf{P}(d|e)$。</li>
+<li>提出了knowledge population algorithm来动态的将上一步实体链接过程中具有较高置信度的mention的上下文信息补充到HIN中，以期到达丰富HIN中的knowledge的目的。</li>
+</ul>
+<h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>实体链接的直接目的是，在给定文档$d$及其中某个mention $m$的情况下，映射到HIN的某个实体$e$。即:</p>
+<script type="math/tex; mode=display">
+\arg \max\limits_{e\in E}\ \textbf{P}(e|m,d),\tag{1}</script><p>等价于:</p>
+<script type="math/tex; mode=display">
+\arg \max\limits_{e\in E}\ \textbf{P}(e|m,d)=\arg \max\limits_{e\in E}\ \frac{\textbf{P}(m,d,e)}{\textbf{P}(m,d)}=\arg \max\limits_{e\in E}\ \textbf{P}(m,d,e). \tag{2}</script><p>假设在给定$e$下，$d$和$m$的分布是独立的，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(m,d,e)=\textbf{P}(e)\textbf{P}(m|e)\textbf{P}(d|e). \tag{3}</script><p>进一步的，我们假设对于候选实体集中的去关联mention的时候，分布是固定的，即$\textbf{P}(m|e)$是一个常数，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(m,d,e)=\eta \cdot\textbf{P}(e)\textbf{P}(d|e), \tag{4}</script><p><strong>The Entity Popularity Model.</strong>在此我们首先解决$\textbf{P}(e)$。类似于PageRank算法，我们可以认为，一个同越多实体相关联的实体，它的流行度(popularity)是越高的，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(e)=\frac{pr(e)}{\sum_{e'\in E}pr(e')}.\tag{5}</script><p>其中，$pr(e)$是一个实体的PageRank分数。注意，这里我们把HIN做了简化，把HIN中不同type的实体都看作同一种，方便我们计算$pr(e)$。</p>
+<p><strong>The Entity Object Model.</strong>然后我们解决$\textbf{P}(d|e)$。这里我们参考统计自然语言处理中的N-Gram模型，把一个文档看作是一个”sentence”，把文档中的mention看作是各种不同的”word”，考虑unigram模型，则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(d|e)=\prod\limits_{v\in d}\textbf{P}(v|e).\tag{6}</script><p>但是这样会产生一个问题，在某些情况下，某个$v$会导致$\textbf{P}(v|e)=0$，从而使$\textbf{P}(d|e)=0$。我们进一步改进式$(6)$：</p>
+<script type="math/tex; mode=display">
+\textbf{P}(d|e)=\prod\limits_{v\in d}(\theta\cdot\textbf{P}_e(v)+(1-\theta)\cdot\textbf{P}_g(v)), \tag{7}</script><p>其中，$\theta\in(0,1)$，$\textbf{P}_e(v)$可以通过预先给定meta-path（元路径）来计算，$\textbf{P}_g(v)$是与$e$无关的、可以直接从文档集合中估计的。在异构信息网络中，实体有多种类型，实体间的关系也有多种类型，我们定义元路径为:$p=R_1-R_2-\cdot\cdot\cdot-R_l$，其中$R_k$表示实体和实体间的二元关系，具体的，如果实体$v$和实体$v’$之间存在关系$R_k$，则$R_k(v’,v)=1$，否则$R_k(v’,v)=0$。同时，我们定义$R_k(v’)=\{v|R_k(v’,v)\}$，即所有跟实体$v’$间存在关系$R_k$的实体的集合。进一步的，$\textbf{P}_e(v|p)$表示从实体$e$出发经路径$p$到达实体$v$的概率。特殊的，当$p$是空路径时，定义如下:</p>
+<script type="math/tex; mode=display">
+\textbf{P}_e(v|p)=
+\left\{
+\begin{aligned}
+& 1 \quad{\rm if \ object}\ v \ {\rm is \ entity} \ e,\\
+& 0 \quad{\rm otherwise}. 
+\end{aligned}
+\right.
+\tag{8}</script><p>如果$p$不为空路径，记$p’=R_1-R_2-\cdot\cdot\cdot-R_{l-1}$则：</p>
+<script type="math/tex; mode=display">
+\textbf{P}_e(v|p)=\sum\limits_{v'\in V}\textbf{P}_e(v'|p')\cdot\frac{R_l(v',v)}{|R_l(v')|},\tag{9}</script><p>直观上理解，所有从实体$e$出发经路径$p$到实体$v$的上一个前驱节点$v’$的$\textbf{P}_e(v’|p’)$的加权平均即为$\textbf{P}_e(v|p)$。实际中，应该存在不同的路径$p$可以从实体$e$到达实体$v$，我们把它们加权可以得到:</p>
+<script type="math/tex; mode=display">
+\textbf{P}_e(v)=\sum\limits_p\ w_p\textbf{P}_e(v|p),\tag{10}</script><p>其中,$w_p$是不同路径的权重，也可以看作是不同路径的先验概率。这里我们不考虑$w_p=0$的情况，并且保证$\sum_p\ w_p=1$。这里所使用的所有路径可以是我们手工给定的，也可以是基于BFS或DFS等搜索算法得到的。至于路径的权重的确定则是一个优化问题：</p>
+<script type="math/tex; mode=display">
+\arg\max\limits_{w_p}\prod\limits_{(m,d)}\textbf{P}(m,d).\tag{11}</script><p>这里</p>
+<script type="math/tex; mode=display">
+\textbf{P}(m,d)=\sum\limits_{e\in E}\textbf{P}(m,d,e),\tag{12}</script><p>联合式$(4)$，得到</p>
+<script type="math/tex; mode=display">
+\arg\max\limits_{w_p} \prod\limits_{(m,d)}\sum\limits_e\eta\cdot\textbf{P}(e)\textbf{P}(d|e)=\arg\max\limits_{w_p} \prod\limits_{(m,d)}\sum\limits_e\textbf{P}(e)\textbf{P}(d|e).\tag{13}</script><p>为了方便优化，我们考虑引入隐变量$\pi$并使用EM算法求解：</p>
+<script type="math/tex; mode=display">
+\pi(m,d,e)=
+\left\{
+\begin{aligned}
+& 1 \quad{\rm if \ mention}\ m \ {\rm in } \ d \ {\rm refers\ to}\ e,\\
+& 0 \quad{\rm otherwise}. 
+\end{aligned}
+\right.
+\tag{14}</script><script type="math/tex; mode=display">
+\arg\max\limits_{w_p}\prod\limits_{(m,d)}\prod\limits_e(\textbf{P}(e)\textbf{P}(d|e))^{\pi(m,d,e)}. \tag{15}</script><p>首先是EM算法中的计算条件概率期望：</p>
+<script type="math/tex; mode=display">
+\textbf{E}(\pi(m,d,e))=\textbf{P}(e|m,d)=\frac{\textbf{P}(m,d,e)}{\textbf{P}(m,d)}=\frac{\textbf{P}(m,d,e)}{\sum_{e'}\textbf{P}(m,d,e')}.\tag{16}</script><p>然后是EM算法的通过调整参$w_p$数最大化期望：</p>
+<script type="math/tex; mode=display">
+\prod\limits_{(m,d),e}(\textbf{P}(e)\textbf{P}(d|e))^{f(m,d,e)}=\prod\limits_{(m,d),e}(\textbf{P}(e))^{f(m,d,e)}\cdot\prod\limits_{(m,d),e}(\textbf{P}(d|e))^{f(m,d,e)}.\tag{17}</script><p>其中，$f(m,d,e)=\textbf{E}(\pi(m,d,e))$。我们可以把式$(17)$的前半部分直接去掉：</p>
+<script type="math/tex; mode=display">
+\prod\limits_{(m,d),e}(\textbf{P}(d|e))^{f(m,d,e)}.\tag{18}</script><p>取对数后得到目标函数:</p>
+<script type="math/tex; mode=display">
+J=\sum\limits_{(m,d),e}f(m,d,e){\rm ln}\ \textbf{P}(d|e).\tag{19}</script><p>考虑式$(7)(10)(19)$，得到：</p>
+<script type="math/tex; mode=display">
+J=\sum\limits_{(m,d),e}f(m,d,e)\sum\limits_v{\rm ln}\ (\theta\cdot\sum\limits_p w_p\textbf{P}_e(v|p)+(1-\theta)\cdot\textbf{P}_g(v)). \tag{20}</script><p>目标函数的优化通过梯度下降完成。</p>
+<p>算法：</p>
+<p><img src="https://i.loli.net/2020/06/25/jVvh8SxCbqngOrH.png" alt="image-20200625205346763"></p>
+<p><strong>THE KNOWLEDGE POPULATION ALGORITHM.</strong>该算法的目的是将某些具有较高置信度的非结构化文本的mention的上下文作为补充信息填充到HIN中，使得HIN中的知识越来越丰富。一个mention映射到一个实体后其正则化后的置信度为：</p>
+<script type="math/tex; mode=display">
+NS(m,d,e)=\frac{\textbf{P}(m,d,e)}{\sum_{e_i\in E_m}\textbf{P}(m,d,e)},\tag{23}</script><p>其中，$E_m$是一个mention对应的候选实体集。这里我们当然是去一个mention所有的映射到的实体中置信度最高的那个：</p>
+<script type="math/tex; mode=display">
+CS(m)=NS(m,d,\arg\max\limits_{e\in E_m}NS(m,d,e)).\tag{24}</script><p>确定映射的实体后，将mention的上下文信息补充到HIN的具体方法这里不再赘述。</p>
+<p>算法：</p>
+<p><img src="https://i.loli.net/2020/06/25/X1RKIYvlk5HpOzM.png" alt="image-20200625210609867"></p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><p><strong>a.</strong>数据集与实验设置。具体的设置这里不再赘述。需要注意的是，准备的自然文本需要和HIN是对应的域，例如，如果HIN是DBLP，则准备的自然文本最好是跟计算机科学相关的语料。</p>
+<p><strong>b.</strong>baseline有POP、VSim、Tradi、SHINE。由实验结果可见，SHINE+性能较baseline较好，而且使用knowledge population algorithm的SHINE+比不使用knowledge population algorithm的SHINE性能更好。此外，使用越多的meta-path，SHINE和SHINE+性能都会越好。</p>
+<p><img src="https://i.loli.net/2020/06/25/w6yKfxz2MvNIZGh.png" alt="image-20200625211419059"></p>
+<p><strong>c.</strong>效率和扩展性分析。实际运行复杂度与entity mention的数量呈线性关系，符合我们的复杂度分析。此外，在不同规模的数据集上性能都较为客观。</p>
+<p><img src="https://i.loli.net/2020/06/25/JRVN7pTOvlS4W3c.png" alt="image-20200625211727571"></p>
+<p><img src="https://i.loli.net/2020/06/25/fz8I4S3LUdlThnq.png" alt="image-20200625211739657"></p>
+<p><strong>d.</strong>参数敏感性分析。具体的实验结果表明，该模型的性能对比较重要的超参数$\theta$和$\gamma$的大小并不是十分敏感，体现了模型的稳定性。</p>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ul>
+<li>实体链接的一个难点便是知识库中可能会有很多名称相同或相近的实体会造成歧义(ambiguity)，本文提出的概率模型可以选出在候选实体集中与mention匹配概率最大的一个实体，并且定义实体和实体间的元路径(meta-path)来辅助匹配，是很有趣的地方。</li>
+<li>另一个novelty是，本文提出的模型在完成实体链接后，对置信度较高的mention的上下文信息可以动态的补充到HIN中，对HIN中的知识进行扩充来方便之后的实体链接，两个过程依次迭代、动态补充，一定程度上提升了模型的性能。</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/"
+    >WWW2018-An Attention Factor Graph Model for Tweet Entity Linking</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/" class="article-date">
+  <time datetime="2020-07-05T08:44:40.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking"><a href="#An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking" class="headerlink" title="An Attention Factor Graph Model for Tweet Entity Linking"></a><em>An Attention Factor Graph Model for Tweet Entity Linking</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>依然是实体链接问题，但是本文解决的是在twitter上的实体链接，由于推文内容的长度限制、表达较为口语化、有较多缩写等特点，比传统的实体链接要困难。但是，由于不同用户的推文之间会有主题连贯性等特点，对推特上的推文进行实体链接又有新的可以挖掘利用的地方。</p>
+<!-- monre -->
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><ul>
+<li>将实体看作是因子图模型(factor graph model)的variable node，然后应用Belief Propagation来求边缘分布，再结合反向传播迭代参数$\Theta$的值。</li>
+<li>计算两个variable node之间的topical coherence，并在此基础上引入节点的间的注意力机制。大幅提升模型训练和推理时的速度的同时，还提高了模型的性能。</li>
+</ul>
+<h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>首先给出本文使用的factor node 的factor function的定义：</p>
+<script type="math/tex; mode=display">
+f_i(S_j)={\rm exp}\{ \mathbf{\Theta^T} \mathbf{\Phi}(S_j) \} \tag{1}</script><p>其中，$\mathbf{\Phi}$是我们用来提取特征的函数向量，它的每一个分量$\Phi_i$表示我们在factor graph上的node间提取特征的函数，这些函数是我们可以事先任意指定的。$\mathbf{\Theta}$是权重向量，也是我们用梯度下降要迭代的参数。本文选取的特征提取函数是 prior popularity 和 topical coherence 。分别如下：</p>
+<script type="math/tex; mode=display">
+\varphi_1(x_i,y_i)=\frac{ {\rm count}(x_i,y_i)}{ {\rm count}(x_i)} \tag{2}</script><script type="math/tex; mode=display">
+\varphi_2(y_i,y_j)=1-\frac{ {\rm log}({\rm max}(|A_{y_i}|,|A_{y_j}|))-{\rm log}(|A_{y_i}\cap A_{y_j}|)}{ {\rm log}(|A|)-{\rm log}({\rm min}(|A_{y_i}|,|A_{y_j}|))} \tag{3}</script><p>$x_i$和$y_i$的先验流行度越高，则$\varphi_1$越高。$y_i$和$y_j$之间的主题连贯性越高，则${\rm max}(|A_{y_i}|,|A_{y_j}|)$和$|A_{y_i}\cap A_{y_j}|$越接近，$\varphi_2$越高。</p>
+<p>在模型学习过程中，给定$G$下所有隐变量节点的条件概率如下：</p>
+<script type="math/tex; mode=display">
+p(Y|G)=\frac{1}{Z}\prod\limits_j f_j(S_j)=\frac{1}{Z}{\rm exp}\{\mathbf{\Theta}^T\sum\limits_j\mathbf{\Phi}(S_j) \}=\frac{1}{Z}{\rm exp}\{\mathbf{\Theta}^T\mathbf{\Psi} \} \tag{4}</script><p>其中，$\mathbf{\Psi}=\sum_j\mathbf{\Phi}(S_j),Z=\sum_Y{\rm exp}\{\mathbf{\Theta}^T\mathbf{\Psi} \}$。</p>
+<p>取对数后考虑极大似然：</p>
+<script type="math/tex; mode=display">
+\Omicron(\mathbf{\Theta})={\rm log}\ p(Y^L|G)={\rm log}\sum\limits_{Y|Y^L}\frac{1}{Z}{\rm exp}\{\mathbf{\Theta}^T\mathbf{\Psi} \}={\rm log}\sum_{Y|Y^L}{\rm exp}\{\mathbf{\Theta}^T\mathbf{\Psi} \}-{\rm log}\sum\limits_Y{\rm exp}\{\mathbf{\Theta}^T\mathbf{\Psi} \} \tag{5}</script><p>考虑梯度下降通过梯度$\frac{\partial \Omicron(\mathbf{\Theta})}{\partial \mathbf{\Theta} }$来更新参数$\mathbf{\Theta}$。但是，$\frac{\partial \Omicron(\mathbf{\Theta})}{\partial \mathbf{\Theta} }$中包含$\mathbf{\Psi}$相关的期望。求$\mathbf{\Psi}$相关的期望又涉及到边缘分布$p(y_i)$和$p(y_i,y_j)$。在factor graph上直接求边缘分布是指数级的，这里我们考虑信念传播算法（Belief Propagation）来加速我们的边缘分布的计算过程。</p>
+<p>从variable node$v_i$到factor node$f_j$的信息流传递：</p>
+<script type="math/tex; mode=display">
+\mu_{i\rightarrow j}(v_i)=\prod\limits_{f_k:v_i\in S_k,f_k\ne f_j}\lambda_{k\rightarrow i}(v_i) \tag{7}</script><p>从factor node$f_j$到variable node$v_i$的信息流传递：</p>
+<script type="math/tex; mode=display">
+\lambda_{j\rightarrow i}(v_i)=\sum\limits_{Sj:v_i=x_i}\ f_j(S_j)\prod\limits_{v_k\in S_j\backslash \{v_i \} }\mu_{k\rightarrow j}(v_k)  \tag{8}</script><p>初始时，均匀分布初始化所有的信息，然后根据式$(7)$和式$(8)$迭代。</p>
+<p>最后我们可以得到边缘分布：</p>
+<script type="math/tex; mode=display">
+p(v_i)\propto\prod\limits_{f_k:v_i\in S_k}\lambda_{k\rightarrow i}(v_i) \tag{9}</script><script type="math/tex; mode=display">
+p(S_j)\propto f_j(S_j)\prod\limits_{v_i\in S_j}\mu_{i\rightarrow j}(v_i) \tag{10}</script><p>学习到最优的参数$\mathbf{\Theta}^*$后就可以结合式$(4)$来进行推断：</p>
+<script type="math/tex; mode=display">
+Y^*=\arg\max_{Y|Y^L}\ p(Y|G,\mathbf{\Theta}^*) \tag{11}</script><p>至此，我们已经有了从学习到推断的完整模型了。但是这个模型的复杂度过高。在该模型中，一个mention $m_i$对应一个观测变量$x_i$和一个隐变量$y_i$，用户$u$的一个隐变量对应着$|M_u|$个factor nodes，则迭代一次Belief Propagation的时间复杂度的下限是：</p>
+<script type="math/tex; mode=display">
+\sum\limits_u|M_u|^2\ge|U|(\frac{\sum_uM_u}{|U|})^2=|U||\overline{M_u}|^2 \tag{12}</script><p>其中，$|\overline{M_u}|$表示每个用户推文的中的平均mention数量，可见，复杂度的下限是正比于$|\overline{M_u}|^2$的。</p>
+<p>之前我们是把一个mention对应的候选实体集中的实体之间都连接了factor node，现在我们事先判定这些entity node 间的主题连贯性，如果两个entity node之间的主题连贯性较低，我们就不需要在这两个entity node之间连接factor node，类似于NLP中的”attention”机制。这里，我们考虑3种计算两个entity node之间 potential topical coherence的方法。</p>
+<ul>
+<li>sum:</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathcal{R}^1_i(y_j)=\sum\limits_{y_i,y_j}\varphi_2(y_i,y_j) \tag{13}</script><ul>
+<li>average:</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathcal{R}^2_i(y_j)=\frac{\sum_{y_i,y_j}\varphi_2(y_i,y_j)}{K_i\cdot K_j} \tag{14}</script><ul>
+<li>max:</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathcal{R}^3_i(y_j)=Max_{y_j}\varphi_2(y_i,y_j) \tag{15}</script><p>我们根据式$(13)(14)(15)$选取entity node $y_i$应该建立联系的前k个entity node。</p>
+<p>至此一个新的问题又诞生了，entity node 之间的attention并不是对称的，例如，存在节点$y_i$pay attention to 节点$y_j$但是节点$y_j$并不需要pay attention to 节点$y_i$的情况。我们引入一种新的节点伪变量节点（pseudo-variable<br>node）。如下图，$y_3’$是$y_3$的伪变量节点。当$y_4$改变状态时$y_3’$和$y_4$之间的factor  node的状态会改变。但是当$y_3$改变状态时，$y_3’$和$y_4$之间的factor  node的状态不会改变。相当于实现了$y3$ pay attention to $y_4$但$y_4$并不pay attention to $y3$。</p>
+<p><img src="https://i.loli.net/2020/06/28/sJqSZr4L8GOdKX9.png" alt="image-20200628114500443"></p>
+<p>考虑了伪变量节点的算法：</p>
+<p><img src="https://i.loli.net/2020/06/28/9ZrsLBNPeqaJX1D.png" alt="image-20200628115331654"></p>
+<p>我们再次进行复杂度分析。现在一个variable node至多同$k$个variable node之间存在factor node($k\le |\overline{M_u}|$)，现在进行一次信念传播算法的迭代的复杂度就变为了$O(k|U||\overline{M_u}|)$，$k$可以看作一个常数，现在复杂度就从二次降为线性的了。</p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><p><strong>a.</strong>实验的模型</p>
+<ul>
+<li>ATT-FULL：不限制注意力的节点数，即没有注意力的模型。</li>
+<li>ATT-SUM：使用式$(13)$的注意力机制。</li>
+<li>ATT-AVG：使用式$(14)$的注意力机制。</li>
+<li>ATT-MAX：使用式$(15)$的注意力机制。</li>
+<li>POP：只利用最大先验流行度（max prior popularity）的模型。</li>
+<li>KAURI：之前的SOTA模型。</li>
+</ul>
+<p><strong>b.</strong>有效性。ATT系列模型超过了POP方法和之前的SOTA方法KAURI，并且引入了注意力机制的ATT-AVG和ATT-MAX分别在两个数据集上超过了没有注意力机制的ATT-FULL模型。此外，引入了基于SUM的注意力机制的ATT-SUM模型反倒比ATT-FULL模型性能稍差一些，这也凸显了注意力机制的评价函数很重要，如果没有选取适当的注意力机制的评价函数的指标反而可能会适得其反。</p>
+<p><img src="https://i.loli.net/2020/06/28/xUbATMsNVqCBdgS.png" alt="image-20200628142714668"></p>
+<p><img src="https://i.loli.net/2020/06/28/rVbMNKg8eP95JIl.png" alt="image-20200628144121057"></p>
+<p><strong>c.</strong>效率和可扩展性。可以看到引入注意力机制的ATT系列模型随着$k$的增长，时间开销逐渐增加，最后和ATT-FULL完全相同。</p>
+<p><img src="https://i.loli.net/2020/06/28/cabdDFiAn2B1ZjE.png" alt="image-20200628144250807"></p>
+<p>保持$k$不变，进行ATT-MAX和ATT-FULL的对比实验，可以发现随着数据规模的增大，ATT-MAX的时间开销要小于ATT-FULL且ATT-MAX几乎是呈线性的而ATT-FULL的增长更快，符合我们之前的时间复杂度分析的结果。</p>
+<p><img src="https://i.loli.net/2020/06/28/J4rGBxVn9Qdtzw1.png" alt="image-20200628144608167"></p>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ul>
+<li>本文的模型可以方便的结合任意数量的、自定义的特征提取函数$\varphi()$，能够更好的利用要进行实体链接的网络本身的性质。</li>
+<li>通过添加伪变量节点在factor graph上的节点间引入非对称注意力机制，将时间复杂度降为了线性，提高了模型训练和推理的速度。不仅如此，相较于未引入注意力机制的模型，还提升了模型的准确度。</li>
+</ul>
+<p>$\sum\limits_{t=1}^{\infty}\frac{1}{t^2}$</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-SummerProject-06-13" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -529,236 +1055,14 @@
 
 </article>
     
-    <article id="post-ResNet" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/13/ResNet/"
-    >ResNet</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/13/ResNet/" class="article-date">
-  <time datetime="2020-03-13T13:23:32.000Z" itemprop="datePublished">2020-03-13</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computer-Vision/">Computer Vision</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>&emsp;最近抽空读了一直想读的ResNet的那两篇文章。</p>
-<ul>
-<li><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a></li>
-<li><a href="https://arxiv.org/abs/1603.05027" target="_blank" rel="noopener">Identity Mappings in Deep Residual Networks</a></li>
-</ul>
-<p>两篇文章的感受：</p>
-      
-      <a class="article-more-link" href="/2020/03/13/ResNet/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computer-Vision/" rel="tag">Computer Vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-DL1" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/29/DL1/"
-    >DL1</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/29/DL1/" class="article-date">
-  <time datetime="2020-02-29T03:30:43.000Z" itemprop="datePublished">2020-02-29</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h3 id="基于VGG16实现CIFAR10分类"><a href="#基于VGG16实现CIFAR10分类" class="headerlink" title="基于VGG16实现CIFAR10分类"></a>基于VGG16实现CIFAR10分类</h3><hr>
-<p>&emsp;最近看了下VGG16的论文，顺便用PyTorch实现了网络的结构，数据集是CIFAR10。当然，网络的部分的结构要稍作修改。</p>
-<p>&emsp;具体来说，网络修改部分如下：</p>
-      
-      <a class="article-more-link" href="/2020/02/29/DL1/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computer-Vision/" rel="tag">Computer Vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-HL1" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/10/HL1/"
-    >HL1</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/10/HL1/" class="article-date">
-  <time datetime="2020-02-10T14:06:56.000Z" itemprop="datePublished">2020-02-10</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hash-Learning/">Hash Learning</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="针对跨模态检索、基于哈希的字典学习"><a href="#针对跨模态检索、基于哈希的字典学习" class="headerlink" title="针对跨模态检索、基于哈希的字典学习"></a>针对跨模态检索、基于哈希的字典学习</h2><p><b>Xu, Xin-Shun. “Dictionary learning based hashing for cross-modal retrieval.” <em>Proceedings of the 24th ACM international conference on Multimedia</em>. ACM, 2016. </b></p>
-<h3 id="Integrated-Hash"><a href="#Integrated-Hash" class="headerlink" title="Integrated Hash"></a>Integrated Hash</h3><ol>
-<li>之前：把不同模态的数据直接投影到同一个空间，但是由于某些语义上相近的数据在隐空间(latent space)投影后难以靠近造成误差。</li>
-<li>改进：并不是直接对不同模态的数据进行投影，而是首先先为每个模态学习出字典并构造出数据的稀疏表示，再对稀疏表示进行线性投影。</li>
-</ol>
-      
-      <a class="article-more-link" href="/2020/02/10/HL1/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash-Learning/" rel="tag">Hash Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
   
 </section>
 </div>

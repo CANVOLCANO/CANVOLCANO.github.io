@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    SummerProject 06 13 |  Canzhe&#39;s Blog
+    NIPS2013-Translating embeddings for modeling multirelational data |  Canzhe&#39;s Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,7 +31,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-SummerProject-06-13" class="article article-type-post" itemscope
+  <article id="post-NIPS2013-Translating-embeddings-for-modeling-multirelational-data" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -39,7 +39,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SummerProject 06 13
+  NIPS2013-Translating embeddings for modeling multirelational data
 </h1>
  
 
@@ -48,12 +48,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/06/13/SummerProject-06-13/" class="article-date">
-  <time datetime="2020-06-13T15:25:25.000Z" itemprop="datePublished">2020-06-13</time>
+      <a href="/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/" class="article-date">
+  <time datetime="2020-07-05T08:49:06.000Z" itemprop="datePublished">2020-07-05</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/SummerProject/">SummerProject</a>
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
   </div>
 
       
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">127字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -97,13 +97,55 @@
       
 
       
-      <h2 id="今天做了什么"><a href="#今天做了什么" class="headerlink" title="今天做了什么"></a>今天做了什么</h2><ol>
-<li>帮后端解决了一些BUG，后端因为是MAC，没有办法跑我在GPU上训练出来的模型，所有有关模型和后端的整合我做完后在自己的机器上进行了测试。</li>
-<li>PR时出了点问题，在健洲的帮助下新建了分支再次进行了提交后就把问题解决。</li>
-</ol>
-<h2 id="明天要做什么"><a href="#明天要做什么" class="headerlink" title="明天要做什么"></a>明天要做什么</h2><ol>
-<li>帮助他们整合前端和后端。</li>
-<li>尝试新的模型，时间有些紧张。</li>
+      <h2 id="Translating-Embeddings-for-Modeling-Multi-relational-data"><a href="#Translating-Embeddings-for-Modeling-Multi-relational-data" class="headerlink" title="Translating Embeddings for Modeling Multi-relational data"></a><em>Translating Embeddings for Modeling Multi-relational data</em></h2><h3 id="一-解决的问题"><a href="#一-解决的问题" class="headerlink" title="一.解决的问题"></a>一.解决的问题</h3><p>对多元关系数据进行建模，是知识图谱方向的主要任务。可为下游任务（e.g.,社交网络分析与挖掘，推荐系统，基于知识的问答系统）提供支撑。我们的直接目的是得到知识库中所有实体(entity)和关系(relationship)在低维空间的embedding。</p>
+<!-- monre -->
+<h3 id="二-解决方案"><a href="#二-解决方案" class="headerlink" title="二.解决方案"></a>二.解决方案</h3><h4 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h4><p>受word2vec启发，在知识图谱的向量化过程中，对于每个triplet$(h,l,t)$，head的向量化表示$\boldsymbol{h}$+realition的向量化表示$\boldsymbol{l}$ 应该在低维embedding空间中尽可能靠近tail的向量化表示$\boldsymbol{t}$。即</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}+\boldsymbol{l}\approx \boldsymbol{t}</script><h4 id="2-细节"><a href="#2-细节" class="headerlink" title="2.细节"></a>2.细节</h4><p>对于同一个triplet里的head和tail，他们的距离应该尽可能靠近。同样的，对于错误的triplet（文中称之为corrupted triplet，这里是我们将一个正确的triplet的head或tail随机替换为另一个实体来人为伪造的），我们应该尽可能使他们的距离尽可能的远，由此我们可以定义如下损失函数：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}=\mathop{\sum}\limits_{(h,l,t)\in S}\mathop{\sum}\limits_{(h',l,t')\in S'_{(h,l,t)} }[\gamma+d(\boldsymbol{h+l,t})-d(\boldsymbol{h'+l,t'})]_{+} \tag{1}</script><p>其中，$d(\boldsymbol{h+l,t})$表示$\boldsymbol{h+l}$和$\boldsymbol{t}$的距离，采用 $L_1$或 $L_2$ -norm。$[x]_+$表示$max(0,x)$。$S’_{(h,l,t)}$为我们上文中提及的人为构造的corrupted triplet，即</p>
+<script type="math/tex; mode=display">
+S'_{(h,l,t)}=\{(h',l,t)|h'\in E \}\cup \{(h,l,t')|t'\in E \} \tag{2}</script><p>算法：</p>
+<p><img src="https://i.loli.net/2020/06/21/kUd7E5cJeDRTfil.png" alt="image-20200621093929002"></p>
+<h3 id="三-实验结果和模型分析"><a href="#三-实验结果和模型分析" class="headerlink" title="三.实验结果和模型分析"></a>三.实验结果和模型分析</h3><h4 id="1-实验结果"><a href="#1-实验结果" class="headerlink" title="1.实验结果"></a>1.实验结果</h4><p><strong>a.</strong>评估协议</p>
+<ul>
+<li>mean ranks:以link prediction预测tail为例，每次预测时，正确的tail在预测时的排名平均。该指标越低越好。</li>
+<li>$hits@10$:以link rediction预测tail为例，每次预测时，如果正确的tail排名前10，则指标“$hits@10$”+1。该指标越高越好。</li>
+<li>raw和filtered:以link prediction预测tail为例，在原始的数据集上直接训练，可能会出现，当前triplet的corrupted triplet恰好也是一个training set的sample。这样就会对训练过程造成干扰。为避免这种情况的出现，我们首先对数据集处理，保证所有triplet的corrupted triplet不会出现在训练集、验证集和测试集上，称之为filtered dataset。</li>
+</ul>
+<p><strong>b.</strong>在link prediction任务上的结果</p>
+<ul>
+<li>总体上，在mean rank和$hits@10$指标上，性能均超过了所有的对比方法。</li>
+<li>细节：</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/21/8klMDPKVjbFaNhT.png" alt="image-20200621100525336"></p>
+<ul>
+<li>作者将关系划分为了一对一、一对多、多对一、多对多供4种，在该分类下实验结果如下：</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/21/o7r2Gj5dP1KsERO.png" alt="image-20200621101649950"></p>
+<p><strong>c.</strong>在给定head和label的情况下对tail进行预测的实验结果的部分样例，其中粗体是正确的triplet的tail，斜体是正确的训练集上的其他tail：</p>
+<p><img src="https://i.loli.net/2020/06/21/quFkX8tU6DZSQwa.png" alt="image-20200621102145103"></p>
+<h4 id="2-模型分析"><a href="#2-模型分析" class="headerlink" title="2.模型分析"></a>2.模型分析</h4><ul>
+<li><p>模型性能客观，在大部分情况下都超过了对比模型。</p>
+</li>
+<li><p>相较于SE，模型因为较SE更加简单，所以表达能力可能弱于SE，但是性能却比SE好。作者在此给出的一个可能原因是，TransE相较于SE欠拟合的程度更小。</p>
+</li>
+<li><p>相较于 SME(bilinear) 和 LFM，TransE的性能同样领先。</p>
+</li>
+<li><p>相较于 RESCAL ， RESCAL 在$hits@10$性能客观，但是在mean rank上性能较为落后。</p>
+</li>
+<li><p>最重要的，在同 Unstructured 对比中，凸显了本文作者提出的translation机制的重要性。</p>
+</li>
+</ul>
+<h3 id="四-个人思考"><a href="#四-个人思考" class="headerlink" title="四.个人思考"></a>四.个人思考</h3><ol>
+<li><strong>优点</strong>：<ul>
+<li>作者的模型受word2vec启发，提出了一种简洁高效的方法对知识库中的实体和关系进行embedding，性能超过了其他的比较复杂的方法，参数量整体较小，也因此容易扩展到更大的数据集上进行训练。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>但是同样因为模型过于简单，在处理简单的关系（e.g.,一对一的关系）效果显著，在一些复杂的关系（e.g.,多对一、一对多的关系）上不够准确，或者说可能无法捕捉到更深层的语义。比如，对（故宫，位于，北京）和（清华大学，位于，北京）两个triplet进行embedding后，“故宫”和“清华大学”的embedding很大概率会非常相近，但是这两个实体实际上是有较大的语义差别的。</li>
+</ul>
+</li>
 </ol>
 
       
@@ -159,14 +201,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/06/13/SummerProject-06-13/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SummerProject/" rel="tag">SummerProject</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li></ul>
 
 
     </footer>
@@ -177,19 +219,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/" class="article-nav-link">
+      <a href="/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            WWW2018-An Attention Factor Graph Model for Tweet Entity Linking
+            NAACL2016-Hierarchical Attention Networks for Document Classification
           
         </div>
       </a>
     
     
-      <a href="/2020/06/11/SummerProject-06-11/" class="article-nav-link">
+      <a href="/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">SummerProject 06 11</div>
+        <div class="article-nav-title">TKDE2018-SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks</div>
       </a>
     
   </nav>

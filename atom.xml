@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-13T15:29:25.794Z</updated>
+  <updated>2020-07-10T07:43:55.459Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,122 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NAACL2016-Hierarchical Attention Networks for Document Classification</title>
+    <link href="http://yoursite.com/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/"/>
+    <id>http://yoursite.com/2020/07/05/NAACL2016-Hierarchical-Attention-Networks-for-Document-Classification/</id>
+    <published>2020-07-05T08:50:06.000Z</published>
+    <updated>2020-07-10T07:43:55.459Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Hierarchical-Attention-Networks-for-Document-Classification&quot;&gt;&lt;a href=&quot;#Hierarchical-Attention-Networks-for-Document-Classification&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NIPS2013-Translating embeddings for modeling multirelational data</title>
+    <link href="http://yoursite.com/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/"/>
+    <id>http://yoursite.com/2020/07/05/NIPS2013-Translating-embeddings-for-modeling-multirelational-data/</id>
+    <published>2020-07-05T08:49:06.000Z</published>
+    <updated>2020-07-10T07:45:18.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Translating-Embeddings-for-Modeling-Multi-relational-data&quot;&gt;&lt;a href=&quot;#Translating-Embeddings-for-Modeling-Multi-relational-data&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TKDE2018-SHINE+ A General Framework for Domain-Specific Entity Linking with Heterogeneous Information Networks</title>
+    <link href="http://yoursite.com/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/"/>
+    <id>http://yoursite.com/2020/07/05/TKDE2018-SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks/</id>
+    <published>2020-07-05T08:47:41.000Z</published>
+    <updated>2020-07-05T08:51:22.547Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;SHINE-A-General-Framework-for-Domain-Specific-Entity-Linking-with-Heterogeneous-Information-Networks&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WWW2018-An Attention Factor Graph Model for Tweet Entity Linking</title>
+    <link href="http://yoursite.com/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/"/>
+    <id>http://yoursite.com/2020/07/05/WWW2018-An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking/</id>
+    <published>2020-07-05T08:44:40.000Z</published>
+    <updated>2020-07-10T07:48:45.238Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking&quot;&gt;&lt;a href=&quot;#An-Attention-Factor-Graph-Model-for-Tweet-Entity-Linking&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://yoursite.com/categories/NLP/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+      <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
+    
+  </entry>
   
   <entry>
     <title>SummerProject 06 13</title>
