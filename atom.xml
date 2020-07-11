@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-10T15:50:24.377Z</updated>
+  <updated>2020-07-11T03:15:11.279Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>CodeForces - 611C:New Year and Domino</title>
-    <link href="http://yoursite.com/2020/07/10/CodeForces-611C-New-Year-and-Domino/"/>
-    <id>http://yoursite.com/2020/07/10/CodeForces-611C-New-Year-and-Domino/</id>
-    <published>2020-07-10T15:47:11.000Z</published>
-    <updated>2020-07-10T15:50:24.377Z</updated>
+    <title>CodeForces - 835C:Star sky</title>
+    <link href="http://yoursite.com/2020/07/11/CodeForces-835C-Star-sky/"/>
+    <id>http://yoursite.com/2020/07/11/CodeForces-835C-Star-sky/</id>
+    <published>2020-07-11T03:13:39.000Z</published>
+    <updated>2020-07-11T03:15:11.279Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;思路：大概的思路是，&lt;del&gt;今天事情太多，有点困，先睡了&lt;/del&gt;&lt;/p&gt;
+          &lt;p&gt;思路：水题。&lt;del&gt;然而老年退役选手还是写了一个小时&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
 &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
@@ -38,6 +38,35 @@
     </summary>
     
     
+      <category term="ACM" scheme="http://yoursite.com/categories/ACM/"/>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/tags/ACM/"/>
+    
+      <category term="CodeForces" scheme="http://yoursite.com/tags/CodeForces/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CodeForces - 611C:New Year and Domino</title>
+    <link href="http://yoursite.com/2020/07/10/CodeForces-611C-New-Year-and-Domino/"/>
+    <id>http://yoursite.com/2020/07/10/CodeForces-611C-New-Year-and-Domino/</id>
+    <published>2020-07-10T15:47:11.000Z</published>
+    <updated>2020-07-11T03:15:09.238Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;思路：大概的思路是，&lt;del&gt;今天事情太多，有点困，先睡了&lt;/del&gt;预处理每个节点的左上角可以摆放的数量，最后加加减减即可。需要注意的是，我这样做左边的那条边所在的列和上边的那条边所在的行会有“突刺”会多算，再减去就可以。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/categories/ACM/"/>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/tags/ACM/"/>
+    
+      <category term="CodeForces" scheme="http://yoursite.com/tags/CodeForces/"/>
     
   </entry>
   
