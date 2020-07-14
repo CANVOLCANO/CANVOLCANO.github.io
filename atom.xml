@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-11T03:15:11.279Z</updated>
+  <updated>2020-07-14T14:43:06.374Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,23 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CodeForces - 321D:Ciel and Flipboard</title>
+    <link href="http://yoursite.com/2020/07/13/CodeForces-321D-Ciel-and-Flipboard/"/>
+    <id>http://yoursite.com/2020/07/13/CodeForces-321D-Ciel-and-Flipboard/</id>
+    <published>2020-07-13T02:07:20.000Z</published>
+    <updated>2020-07-14T14:43:06.374Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;思路：&lt;del&gt;题解看了一上午&lt;/del&gt;思路其实并不复杂，关键是有个重要的observation：记$m=(n+1)/2$，setup[a][b]=1表示第a行第b列翻转，setup[a][b]=0则反之。对于第i行，$\forall j&lt;m$，则setup\[i][j]\^setup\[i][m]\^setup\[i][j+m]=0。对于列同样成立。所以我们首先状压第m列的前m个位置的状态，然后再每一列从第一个到最后一个枚举即可，总的
+    
+    </summary>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/categories/ACM/"/>
+    
+    
+      <category term="ACM" scheme="http://yoursite.com/tags/ACM/"/>
+    
+      <category term="CodeForces" scheme="http://yoursite.com/tags/CodeForces/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CodeForces - 835C:Star sky</title>
     <link href="http://yoursite.com/2020/07/11/CodeForces-835C-Star-sky/"/>
     <id>http://yoursite.com/2020/07/11/CodeForces-835C-Star-sky/</id>
     <published>2020-07-11T03:13:39.000Z</published>
-    <updated>2020-07-11T03:15:11.279Z</updated>
+    <updated>2020-07-11T08:04:29.179Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;思路：水题。&lt;del&gt;然而老年退役选手还是写了一个小时&lt;/del&gt;&lt;/p&gt;
+      &lt;p&gt;思路：水题。&lt;del&gt;然而老年退役选手还是写了一个小时&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
     
     </summary>
     
