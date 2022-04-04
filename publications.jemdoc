@@ -3,15 +3,15 @@
 (* indicates equal contribution)
 
 === Conference
-- Simultaneously learning stochastic and adversarial bandits under the position-based model \n
-Cheng Chen, *Canzhe Zhao*, and Shuai Li, \n
-in AAAI 2022.
 - Knowledge-aware conversational preference elicitation with bandit feedback \n
 *Canzhe Zhao*, Tong Yu, Zhihui Xie, and Shuai Li, \n
 the Web Conference (WWW), 2022.
 - [https://arxiv.org/abs/2201.10447 Differentially private temporal difference learning with stochastic nonconvex-strongly-concave optimization] \n
 *Canzhe Zhao*, Yanjie Ze, Jing Dong, Baoxiang Wang, and Shuai Li, \n
 preprints.
+- Simultaneously learning stochastic and adversarial bandits under the position-based model \n
+Cheng Chen, *Canzhe Zhao*, and Shuai Li, \n
+in AAAI 2022.
 - Clustering of conversational bandits for user preference learning and elicitation \n
 Junda Wu\*, *Canzhe Zhao*\*, Tong Yu, Jingyang Li, and Shuai Li, \n
 the 30th ACM International Conference on Information and Knowledge Management (CIKM), 2021.
