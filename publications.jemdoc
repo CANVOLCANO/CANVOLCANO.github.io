@@ -1,25 +1,20 @@
 # jemdoc: menu{MENU}{publications.html}, nofooter
-== Publications 
+== Publications and Preprints
 
 === Conference
 - Simultaneously learning stochastic and adversarial bandits under the position-based model \n
-#- [https://dl.acm.org/doi/10.1145/3394486.3403246 List-wise fairness criterion for point processes] \[[https://github.com/jshang2/List-wise Code]\] \n
-#(research full paper, acceptance rate: 216/1279=16.89\%) \n
-Cheng Chen, *Canzhe Zhao*, Shuai Li \n
+Cheng Chen, *Canzhe Zhao*, and Shuai Li, \n
 in AAAI 2022.
-- [pubs/geo.pdf Geometric Hawkes processes with graph convolutional recurrent neural networks] \n
-#- [https://ojs.aaai.org//index.php/AAAI/article/view/4416 Geometric Hawkes processes with graph convolutional recurrent neural networks] \n #\[[pubs/GeometricHawkes.pdf Detailed Version]\] \n
-(acceptance rate: 1150/7095=16.21\%) \n
-*Jin Shang*, and Mingxuan Sun \n
-in Proc. of the AAAI Conference on Artificial Intelligence (AAAI), Hawaii, USA, Jan. 2019.
-- [pubs/local-low-rank.pdf Local low-rank Hawkes processes for temporal user-item interactions] \n
-#- [https://ieeexplore.ieee.org/document/8594867 Local low-rank Hawkes processes for temporal user-item interactions] \n
-(regular paper, acceptance rate: 84/948=8.86\%) \n
-*Jin Shang*, and Mingxuan Sun \n
-in Proc. of the IEEE International Conference on Data Mining (ICDM), Singapore, Nov. 2018.
-- [pubs/crossdemo.pdf Demographic inference via knowledge transfer in cross-domain recommender systems] \n
-#- [https://ieeexplore.ieee.org/document/8594971 Demographic inference via knowledge transfer in cross-domain recommender systems] \n #\[[pubs/crossDemoFull.pdf Full Version Submitted]\] \n
-(short paper, acceptance rate: 105\/948=11.08\%, total rate: 189\/948=19.94\%) \n
-*Jin Shang*, Mingxuan Sun, and Kevyn Collins-Thompson \n
-in Proc. of the IEEE International Conference on Data Mining (ICDM), Singapore, Nov. 2018.
+- Knowledge-aware conversational preference elicitation with bandit feedback \n
+*Canzhe Zhao*, Tong Yu, Zhihui Xie, and Shuai Li, \n
+the Web Conference (WWW), 2022.
+- [https://arxiv.org/abs/2201.10447 Differentially private temporal difference learning with stochastic nonconvex-strongly-concave optimization] \n
+*Canzhe Zhao*, Yanjie Ze, Jing Dong, Baoxiang Wang, and Shuai Li, \n
+preprints.
+- Clustering of conversational bandits for user preference learning and elicitation \n
+Junda Wu, *Canzhe Zhao*, Tong Yu, Jingyang Li, and Shuai Li, \n
+the 30th ACM International Conference on Information and Knowledge Management (CIKM), 2021.
+- Comparison-based conversational recommender system with relative bandit feedback \n
+Zhihui Xie, Tong Yu, *Canzhe Zhao*, and Shuai Li, \n
+the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR), 2021.
 === Journal
