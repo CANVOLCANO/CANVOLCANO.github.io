@@ -1,5 +1,6 @@
 # jemdoc: menu{MENU}{publications.html}, nofooter
 == Publications and Preprints
+(* indicates equal contribution)
 
 === Conference
 - Simultaneously learning stochastic and adversarial bandits under the position-based model \n
@@ -12,7 +13,7 @@ the Web Conference (WWW), 2022.
 *Canzhe Zhao*, Yanjie Ze, Jing Dong, Baoxiang Wang, and Shuai Li, \n
 preprints.
 - Clustering of conversational bandits for user preference learning and elicitation \n
-Junda Wu, *Canzhe Zhao*, Tong Yu, Jingyang Li, and Shuai Li, \n
+Junda Wu\*, *Canzhe Zhao*\*, Tong Yu, Jingyang Li, and Shuai Li, \n
 the 30th ACM International Conference on Information and Knowledge Management (CIKM), 2021.
 - Comparison-based conversational recommender system with relative bandit feedback \n
 Zhihui Xie, Tong Yu, *Canzhe Zhao*, and Shuai Li, \n
