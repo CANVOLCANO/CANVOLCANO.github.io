@@ -1,46 +1,31 @@
 # jemdoc: menu{MENU}{index.html}, nofooter
-== Jin Shang
+== Canzhe Zhao
 
 ~~~
-{}{img_left}{photos/bio6.png}{alt text}{185px}{239px}
-[https://jshang2.github.io Jin Shang], Ph.D. \n 
-Senior Engineer at [https://www.us1.dgene.com/ DGene] \n
-Baton Rouge, Louisiana, United States \n
+{}{img_left}{photos/bio_z.jpg}{alt text}{185px}{239px}
+[https://CANVOLCANO.github.io Canzhe Zhao], Ph.D. Student \n 
+[https://jhc.sjtu.edu.cn/ John Hopcroft Center for Computer Science] \n
+[https://www.cs.sjtu.edu.cn/ Department of Computer Science & Engineering]\n
+[https://www.sjtu.edu.cn/ Shanghai Jiao Tong University (SJTU)] \n
 \n
 Email: astrostell@gmail.com \n
-\[[https://scholar.google.com/citations?user=CIfBuzcAAAAJ&hl=en Google Scholar]\]\[[CV.pdf Curriculem Vitae]\] \n
+\[[https://scholar.google.com/citations?user=GoUMtswAAAAJ=en Google Scholar]\]\[[CV_Canzhe_20220312.pdf Curriculem Vitae]\] \n
 ~~~
 
-
-
-
-at Baton Rouge, Louisiana, USA. (March 19, 2021)
-#at Grand Isle State Park, Louisiana, USA. (Oct 6, 2018)
-
-#== News
-#- \[05-15-2020\] "List-wise fairness criterion for point processes" is accepted by KDD'20!
-#- \[05-04-2020\] Defended my Ph.D. dissertation titled "Predictive modeling of asynchronous event sequence data"!
-#- \[05-25-2019\] An extention of our ICDM'18 work "Local low-rank Hawkes processes for modeling temporal user-item interactions" is accepted by Knowledge and Information Systems(KAIS)!
-#- \[10-31-2018\] "Geometric Hawkes processes with graph convolutional recurrent neural networks" is accepted by AAAI'19! 
-#- \[08-18-2018\] "Local low-rank Hawkes processes for temporal user-item interactions" is accepted by ICDM'18!
-#- \[08-18-2018\] "Demographic inference via knowledge transfer in cross-domain recommender systems" is accepted by ICDM'18!
 
 == About me
-I'm currently working at [https://www.us1.dgene.com/ DGene] as a senior engineer. I got my Ph.D. in Computer Science at Louisiana State University, under the guidance of Dr. [http://csc.lsu.edu/~msun/ Mingxuan Sun]. My research focuses on developing computationally efficient machine learning as well as deep learning models and algorithms, with applications in recommender systems, time-series analysis, computer vision, computer graphics, natural language processing, and fairness.
+I am a first-year Ph.D. student in computer science at [https://www.sjtu.edu.cn/ Shanghai Jiao Tong University], advised by [https://shuaili8.github.io/ Prof. Shuai Li]. I received a B.Eng. in Software Engineering from the [https://www.sdu.edu.cn/ Shandong University (SDU)] in 2021.
 
 == Education 
-- Ph.D. in Computer Science, Louisiana State University, Aug. 2016 - Aug. 2020
-- M.S. in Solid Mechanics, University of Science and Technology of China, Sept. 2013 - Jun. 2016
-- B.S. in Theoretical and Applied Mechanics, University of Science and Technology of China, Sept. 2009 - Jun. 2013
+- Ph.D. Student in Computer Science, [https://www.sjtu.edu.cn/ Shanghai Jiao Tong University], Sept. 2021 - present
+- B.Eng. in Software Engineering, [https://www.sdu.edu.cn/ Shandong University], Sept. 2017 - Jun. 2021
+- High School Student, Henan Experimental High School,  Sept. 2014 - Jun. 2017
 
 == Research Interests 
-- Statistical Machine Learning, Deep Learning, Point Process, Optimization, Fairness
-- Data Mining, Information Retrieval, Recommender System 
-- Computer Vision, Computer Graphics, Natural Language Processing
+- Reinforcement Learning
+- Online Learning
 
-== Visitors
-~~~
-{}{raw}
-<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=n&d=weAawplBogRZm4707J2DPkv1Pn3WYzslKBDineUl-bw'></script>
-~~~
+== Contact
+E-main: /canzhezhao/ \[@\] sjtu \[DOT\] edu \[DOT\] cn \n
+Address: 800 Dongchuan RD. Minhang District, Shanghai, China
 
