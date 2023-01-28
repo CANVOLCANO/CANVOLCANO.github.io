@@ -3,20 +3,29 @@
 \n
 (* indicates equal contribution)
 
-=== Conference
-- Knowledge-aware conversational preference elicitation with bandit feedback \n
-*Canzhe Zhao*, Tong Yu, Zhihui Xie, and Shuai Li, \n
-the Web Conference (WWW), 2022.
+=== Publications
+==== 2023
+- Learning Adversarial Linear Mixture Markov Decision Processes with Bandit Feedback and Unknown Transition \n
+*Canzhe Zhao*, Ruofeng Yang, Baoxiang Wang and Shuai Li, \n
+ICLR, 2023
+- Clustering of Conversational Bandits with Posterior Sampling for User Preference Learning and Elicitation \n
+Qizhi Li\*, *Canzhe Zhao*\*, Tong Yu, Junda Wu and Shuai Li, \n
+UMUAI, 2023
 - [https://arxiv.org/abs/2201.10447 Differentially private temporal difference learning with stochastic nonconvex-strongly-concave optimization] \n
 *Canzhe Zhao*, Yanjie Ze, Jing Dong, Baoxiang Wang, and Shuai Li, \n
-preprints.
+WSDM, 2023.
+==== 2022
+- Knowledge-aware conversational preference elicitation with bandit feedback \n
+*Canzhe Zhao*, Tong Yu, Zhihui Xie, and Shuai Li, \n
+WWW, 2022.
 - Simultaneously learning stochastic and adversarial bandits under the position-based model \n
 Cheng Chen, *Canzhe Zhao*, and Shuai Li, \n
-in AAAI 2022.
+AAAI, 2022.
+==== 2021
 - Clustering of conversational bandits for user preference learning and elicitation \n
 Junda Wu\*, *Canzhe Zhao*\*, Tong Yu, Jingyang Li, and Shuai Li, \n
-the 30th ACM International Conference on Information and Knowledge Management (CIKM), 2021.
+CIKM, 2021.
 - Comparison-based conversational recommender system with relative bandit feedback \n
 Zhihui Xie, Tong Yu, *Canzhe Zhao*, and Shuai Li, \n
-the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR), 2021.
-=== Journal
+SIGIR, 2021.
+=== Preprints
