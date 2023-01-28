@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{projects.html}, nofooter
+# jemdoc: menu{MENU}{projects.html}, nosource
 == Projects 
 
 === Volumetric Capture Studio
