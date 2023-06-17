@@ -5,6 +5,12 @@
 
 === Publications
 ==== 2023
+- Best-of-three-worlds analysis for linear bandits with follow-the-regularized-leader algorithm \n
+Fang Kong, *Canzhe Zhao*, and Shuai Li, \n
+COLT, 2023.
+- DPMAC: Differentially private communication for cooperative multi-agent reinforcement learning \n
+*Canzhe Zhao*\*, Yanjie Ze\*, Jing Dong, Baoxiang Wang, and Shuai Li, \n
+IJCAI, 2023.
 - Learning Adversarial Linear Mixture Markov Decision Processes with Bandit Feedback and Unknown Transition \n
 *Canzhe Zhao*, Ruofeng Yang, Baoxiang Wang and Shuai Li, \n
 ICLR, 2023
