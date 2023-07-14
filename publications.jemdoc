@@ -5,33 +5,33 @@
 
 === Publications
 ==== 2023
-- Best-of-three-worlds analysis for linear bandits with follow-the-regularized-leader algorithm \n
+- Best-of-three-worlds analysis for linear bandits with follow-the-regularized-leader algorithm \[[https://arxiv.org/abs/2303.06825 arXiv]\] \n
 Fang Kong, *Canzhe Zhao*, and Shuai Li, \n
 COLT, 2023.
 - DPMAC: Differentially private communication for cooperative multi-agent reinforcement learning \n
 *Canzhe Zhao*\*, Yanjie Ze\*, Jing Dong, Baoxiang Wang, and Shuai Li, \n
 IJCAI, 2023.
-- Learning Adversarial Linear Mixture Markov Decision Processes with Bandit Feedback and Unknown Transition \n
+- Learning Adversarial Linear Mixture Markov Decision Processes with Bandit Feedback and Unknown Transition \[[https://openreview.net/forum?id=sVU54nyaA9K link]\]\[[files\ICLR_2023_pre.pdf slides]\] \n
 *Canzhe Zhao*, Ruofeng Yang, Baoxiang Wang and Shuai Li, \n
 ICLR, 2023
-- Clustering of Conversational Bandits with Posterior Sampling for User Preference Learning and Elicitation \n
+- Clustering of Conversational Bandits with Posterior Sampling for User Preference Learning and Elicitation \[[https://link.springer.com/article/10.1007/s11257-023-09358-x link]\] \n
 Qizhi Li\*, *Canzhe Zhao*\*, Tong Yu, Junda Wu and Shuai Li, \n
 UMUAI, 2023
-- Differentially private temporal difference learning with stochastic nonconvex-strongly-concave optimization \n
+- Differentially private temporal difference learning with stochastic nonconvex-strongly-concave optimization \[[https://dl.acm.org/doi/10.1145/3539597.3570470 link]\] \n
 *Canzhe Zhao*, Yanjie Ze, Jing Dong, Baoxiang Wang, and Shuai Li, \n
 WSDM, 2023.
 ==== 2022
-- Knowledge-aware conversational preference elicitation with bandit feedback \n
+- Knowledge-aware conversational preference elicitation with bandit feedback \[[https://dl.acm.org/doi/10.1145/3485447.3512152 link]\] \[[files\WWW_2022_pre.pdf slides]\]\n
 *Canzhe Zhao*, Tong Yu, Zhihui Xie, and Shuai Li, \n
 WWW, 2022.
-- Simultaneously learning stochastic and adversarial bandits under the position-based model \n
+- Simultaneously learning stochastic and adversarial bandits under the position-based model \[[https://arxiv.org/abs/2207.05437 arXiv]\]\n
 Cheng Chen, *Canzhe Zhao*, and Shuai Li, \n
 AAAI, 2022.
 ==== 2021
-- Clustering of conversational bandits for user preference learning and elicitation \n
+- Clustering of conversational bandits for user preference learning and elicitation \[[https://dl.acm.org/doi/10.1145/3459637.3482328 link]\]\[[files\CIKM_2021_pre.pdf slides]\]\n
 Junda Wu\*, *Canzhe Zhao*\*, Tong Yu, Jingyang Li, and Shuai Li, \n
 CIKM, 2021.
-- Comparison-based conversational recommender system with relative bandit feedback \n
+- Comparison-based conversational recommender system with relative bandit feedback \[[https://dl.acm.org/doi/10.1145/3404835.3462920 link]\] \n
 Zhihui Xie, Tong Yu, *Canzhe Zhao*, and Shuai Li, \n
 SIGIR, 2021.
 === Preprints
