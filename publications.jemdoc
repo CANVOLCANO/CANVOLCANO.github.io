@@ -4,6 +4,10 @@
 (* indicates equal contribution)
 
 === Publications
+==== 2025
+- Logarithmic Regret for Linear Markov Decision Processes with Adversarial Corruptions \n
+*Canzhe Zhao*, XiangCheng Zhang, Baoxiang Wang, and Shuai Li, \n
+AAAI, 2025.
 ==== 2023
 - Learning Adversarial Low-rank Markov Decision Processes with Unknown Transition and Full-information Feedback \[[https://arxiv.org/abs/2311.07876 arXiv]\]\[[./files/23NeurIPS_poster.pdf poster]\] \n
 *Canzhe Zhao*, Ruofeng Yang, Baoxiang Wang, Xuezhou Zhang and Shuai Li, \n
