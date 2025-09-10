@@ -4,52 +4,52 @@
 (* indicates equal contribution)
 
 === Preprints
-- Heavy-Tailed Linear Bandits: Adversarial Robustness, Best-of-Both-Worlds, and Beyond \n
+- Heavy-Tailed Linear Bandits: Adversarial Robustness, Best-of-Both-Worlds, and Beyond. \[[https://arxiv.org/abs/2508.13679 arXiv]\] \n
 *Canzhe Zhao*, Shinji Ito*, Shuai Li. \n
-ICML, 2025.
+Under review, 2025.
 
 === Publications
 ==== 2025
-- Learning Imperfect Information Extensive-form Games with Last-iterate Convergence under Bandit Feedback \n
+- Learning Imperfect Information Extensive-form Games with Last-iterate Convergence under Bandit Feedback. \n
 *Canzhe Zhao*, Yutian Cheng, Jing Dong, Baoxiang Wang, Shuai Li. \n
 ICML, 2025.
-- Towards Provably Efficient Learning of Imperfect Information Extensive-Form Games with Linear Function Approximation \n
+- Towards Provably Efficient Learning of Imperfect Information Extensive-Form Games with Linear Function Approximation. \n
 *Canzhe Zhao*, Shuze Chen, Weiming Liu, Haobo Fu, Qiang Fu, Shuai Li. \n
 UAI, 2025.
-- Logarithmic Regret for Linear Markov Decision Processes with Adversarial Corruptions \n
-*Canzhe Zhao*, XiangCheng Zhang, Baoxiang Wang, Shuai Li. \n
+- Logarithmic Regret for Linear Markov Decision Processes with Adversarial Corruptions. \n
+*Canzhe Zhao*, Xiangcheng Zhang, Baoxiang Wang, Shuai Li. \n
 AAAI, 2025.
 ==== 2023
-- Learning Adversarial Low-rank Markov Decision Processes with Unknown Transition and Full-information Feedback \[[https://arxiv.org/abs/2311.07876 arXiv]\]\[[./files/23NeurIPS_poster.pdf poster]\] \n
+- Learning Adversarial Low-rank Markov Decision Processes with Unknown Transition and Full-information Feedback. \[[https://arxiv.org/abs/2311.07876 arXiv]\]\[[./files/23NeurIPS_poster.pdf poster]\] \n
 *Canzhe Zhao*, Ruofeng Yang, Baoxiang Wang, Xuezhou Zhang, Shuai Li. \n
 NeurIPS, 2023.
-- Best-of-three-worlds analysis for linear bandits with follow-the-regularized-leader algorithm \[[https://arxiv.org/abs/2303.06825 arXiv]\] \n
+- Best-of-Three-Worlds Analysis for Linear Bandits with Follow-the-Regularized-Leader algorithm. \[[https://arxiv.org/abs/2303.06825 arXiv]\] \n
 Fang Kong, *Canzhe Zhao*, Shuai Li. \n
 COLT, 2023.
-- DPMAC: Differentially private communication for cooperative multi-agent reinforcement learning \n
+- DPMAC: Differentially Private Communication for Cooperative Multi-Agent Reinforcement Learning. \n
 *Canzhe Zhao*\*, Yanjie Ze\*, Jing Dong, Baoxiang Wang, Shuai Li. \n
 IJCAI, 2023.
-- Learning Adversarial Linear Mixture Markov Decision Processes with Bandit Feedback and Unknown Transition \[[https://openreview.net/forum?id=sVU54nyaA9K link]\]\[[files\ICLR_2023_pre.pdf slides]\] \n
+- Learning Adversarial Linear Mixture Markov Decision Processes with Bandit Feedback and Unknown Transition. \[[https://openreview.net/forum?id=sVU54nyaA9K link]\]\[[files\ICLR_2023_pre.pdf slides]\] \n
 *Canzhe Zhao*, Ruofeng Yang, Baoxiang Wang, Shuai Li. \n
 ICLR, 2023
-- Clustering of Conversational Bandits with Posterior Sampling for User Preference Learning and Elicitation \[[https://link.springer.com/article/10.1007/s11257-023-09358-x link]\] \n
+- Clustering of Conversational Bandits with Posterior Sampling for User Preference Learning and Elicitation. \[[https://link.springer.com/article/10.1007/s11257-023-09358-x link]\] \n
 Qizhi Li\*, *Canzhe Zhao*\*, Tong Yu, Junda Wu, Shuai Li. \n
 UMUAI, 2023
-- Differentially private temporal difference learning with stochastic nonconvex-strongly-concave optimization \[[https://dl.acm.org/doi/10.1145/3539597.3570470 link]\] \n
+- Differentially Private Temporal Difference Learning with Stochastic Nonconvex-Strongly-Concave Optimization. \[[https://dl.acm.org/doi/10.1145/3539597.3570470 link]\] \n
 *Canzhe Zhao*, Yanjie Ze, Jing Dong, Baoxiang Wang, Shuai Li. \n
 WSDM, 2023.
 ==== 2022
-- Knowledge-aware conversational preference elicitation with bandit feedback \[[https://dl.acm.org/doi/10.1145/3485447.3512152 link]\] \[[files\WWW_2022_pre.pdf slides]\]\n
+- Knowledge-aware Conversational Preference Elicitation with Bandit Feedback. \[[https://dl.acm.org/doi/10.1145/3485447.3512152 link]\] \[[files\WWW_2022_pre.pdf slides]\]\n
 *Canzhe Zhao*, Tong Yu, Zhihui Xie, Shuai Li. \n
 WWW, 2022.
-- Simultaneously learning stochastic and adversarial bandits under the position-based model \[[https://arxiv.org/abs/2207.05437 arXiv]\]\n
+- Simultaneously Learning Stochastic and Adversarial Bandits under the Position-based Model. \[[https://arxiv.org/abs/2207.05437 arXiv]\]\n
 Cheng Chen, *Canzhe Zhao*, Shuai Li. \n
 AAAI, 2022.
 ==== 2021
-- Clustering of conversational bandits for user preference learning and elicitation \[[https://dl.acm.org/doi/10.1145/3459637.3482328 link]\]\[[files\CIKM_2021_pre.pdf slides]\]\n
+- Clustering of Conversational Bandits for User Preference Learning and Elicitation. \[[https://dl.acm.org/doi/10.1145/3459637.3482328 link]\]\[[files\CIKM_2021_pre.pdf slides]\]\n
 Junda Wu\*, *Canzhe Zhao*\*, Tong Yu, Jingyang Li, Shuai Li. \n
 CIKM, 2021.
-- Comparison-based conversational recommender system with relative bandit feedback \[[https://dl.acm.org/doi/10.1145/3404835.3462920 link]\] \n
+- Comparison-based Conversational Recommender System with Relative Bandit Feedback. \[[https://dl.acm.org/doi/10.1145/3404835.3462920 link]\] \n
 Zhihui Xie, Tong Yu, *Canzhe Zhao*, Shuai Li. \n
 SIGIR, 2021.
 
