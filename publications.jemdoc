@@ -4,6 +4,10 @@
 (* indicates equal contribution)
 
 === Preprints
+- Best-of-Both-Worlds FTRL for Linear Bandits: The Interplay of Information Acquisition, Corruption, and Geometry. \[[https://arxiv.org/abs/2611.01299 arXiv]\] \[[files\IA-FTRL-slides.pdf slides]\] \n
+*Canzhe Zhao*, Vincent Y. F. Tan. \n
+Under review, 2026.
+
 - Heavy-Tailed Linear Bandits: Adversarial Robustness, Best-of-Both-Worlds, and Beyond. \[[https://arxiv.org/abs/2508.13679 arXiv]\] \n
 *Canzhe Zhao*\*, Shinji Ito\*, Shuai Li. \n
 Under review, 2025.
