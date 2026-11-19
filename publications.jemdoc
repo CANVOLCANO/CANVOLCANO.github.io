@@ -8,11 +8,25 @@
 *Canzhe Zhao*, Vincent Y. F. Tan. \n
 Under review, 2026.
 
+=== Journal Articles
 - Heavy-Tailed Linear Bandits: Adversarial Robustness, Best-of-Both-Worlds, and Beyond. \[[https://arxiv.org/abs/2508.13679 arXiv]\] \n
 *Canzhe Zhao*\*, Shinji Ito\*, Shuai Li. \n
-Under review, 2025.
+JMLR (forthcoming).
 
-=== Publications
+=== Conference Papers
+==== 2026
+- Improved Sample Complexity for Markov Games via Variance-Aware Bandit Learning. \n
+Hanbin Zhou\*, *Canzhe Zhao*\*, Shuai Li. \n
+NeurIPS, 2026.
+
+- No Free Best-of-Both-Worlds Learning in Repeated Bilateral Trade. \n
+Yutian Cheng, *Canzhe Zhao*, Jingye Zhao, Shuai Li. \n
+NeurIPS, 2026.
+
+- Policy Optimization for Adversarial Linear Mixture MDPs with Unknown Transitions and Bandit Feedback. \n
+Yutian Cheng\*, *Canzhe Zhao*\*, Shuai Li. \n
+UAI, 2026.
+
 ==== 2025
 - Learning Imperfect Information Extensive-form Games with Last-iterate Convergence under Bandit Feedback. \n
 *Canzhe Zhao*, Yutian Cheng, Jing Dong, Baoxiang Wang, Shuai Li. \n
