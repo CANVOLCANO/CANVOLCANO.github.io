@@ -365,3 +365,20 @@ table.imgtable, table.imgtable td {
     border: none;
     text-align: left;
 }
+
+table#reviewer-services {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: -0.4em;
+    margin-bottom: 0.8em;
+}
+
+table#reviewer-services td {
+    border: none;
+    padding: 0 2em 0 0;
+    width: 33.333%;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+}
